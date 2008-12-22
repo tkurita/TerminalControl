@@ -287,7 +287,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>0</integer>
+									<integer>24</integer>
+									<integer>23</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -312,7 +313,7 @@
 							<real>265</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>159 242 1074 673 0 0 1440 938 </string>
+						<string>172 164 1074 673 0 0 1440 938 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -340,14 +341,14 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CD6F5A90EC1EED900134939</string>
+										<string>2C43525B0EFFEEA7006ED2E4</string>
 										<key>history</key>
 										<array>
 											<string>2C9A5EBE0E8D3B06009680D1</string>
 											<string>2C9A5EBF0E8D3B06009680D1</string>
 											<string>2CA9B5530E991C10009C0C2A</string>
 											<string>2CA9B5540E991C10009C0C2A</string>
-											<string>2C83212E0E9A62D3009F6A8B</string>
+											<string>2CFBE8A30EFFB0AD0087FD95</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -369,7 +370,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {765, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>159 242 1074 673 0 0 1440 938 </string>
+								<string>172 164 1074 673 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -382,7 +383,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>main.m</string>
+								<string>TerminalControl.sdef</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -390,17 +391,18 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>main.m</string>
+										<string>TerminalControl.sdef</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CD6F5AA0EC1EED900134939</string>
+										<string>2C43525C0EFFEEA7006ED2E4</string>
 										<key>history</key>
 										<array>
 											<string>2C9A5EBD0E8D3B06009680D1</string>
 											<string>2C9A5EBE0E8D3B06009680D1</string>
 											<string>2C9A5EBF0E8D3B06009680D1</string>
-											<string>2C83212F0E9A62D3009F6A8B</string>
+											<string>2C68B9590EFFA38F0017E097</string>
+											<string>2CFBE8A40EFFB0AD0087FD95</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -421,7 +423,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {765, 617}}</string>
 								<key>RubberWindowFrame</key>
-								<string>159 242 1074 673 0 0 1440 938 </string>
+								<string>172 164 1074 673 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -441,7 +443,7 @@
 								<key>Frame</key>
 								<string>{{0, 627}, {765, 5}}</string>
 								<key>RubberWindowFrame</key>
-								<string>159 242 1074 673 0 0 1440 938 </string>
+								<string>172 164 1074 673 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -466,9 +468,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CD6F5AB0EC1EED900134939</string>
+				<string>2C43525D0EFFEEA7006ED2E4</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2CD6F5AC0EC1EED900134939</string>
+				<string>2C43525E0EFFEEA7006ED2E4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -590,7 +592,7 @@
 	<key>TimeStamp</key>
 	<real>0.0</real>
 	<key>ToolbarDisplayMode</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
 	<true/>
 	<key>ToolbarSizeMode</key>
@@ -603,10 +605,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>/Users/tkurita/Documents/TerminalControl/trunk/TerminalControl.xcodeproj</string>
+		<string>/Users/tkurita/Dev/Projects/TerminalControl/trunk/TerminalControl.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>159 242 1074 673 0 0 1440 938 </string>
+	<string>172 164 1074 673 0 0 1440 938 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -685,7 +687,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C9A5EB20E8D3A4C009680D1</string>
-				<string>2C8321320E9A62D3009F6A8B</string>
+				<string>2C68B9560EFF8E330017E097</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
