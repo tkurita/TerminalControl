@@ -1,5 +1,6 @@
 #include <Carbon/Carbon.h>
 
+OSErr getFloatArray(const AppleEvent *ev, AEKeyword theKey,  CFMutableArrayRef *outArray);
 OSErr getStringValue(const AppleEvent *ev, AEKeyword theKey, CFStringRef *outStr);
 OSErr getFSRef(const AppleEvent *ev, AEKeyword theKey, FSRef *outFSRef);
 
