@@ -170,7 +170,8 @@ OSErr getFloatArray(const AppleEvent *ev, AEKeyword theKey,  CFMutableArrayRef *
 			goto bail;
 		}
 		CFNumberRef cfnum = CFNumberCreate(NULL, kCFNumberFloat32Type, &value);
-		CFArrayAppendValue(*outArray, cfnum);		
+		CFArrayAppendValue(*outArray, cfnum);
+		//CFRelease(cfnum); // this statement cause error. I can't understand the reason.
     }
 bail:
 #if useLog
