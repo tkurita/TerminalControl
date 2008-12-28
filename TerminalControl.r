@@ -51,6 +51,35 @@ resource 'aete' (0, "TerminalControl Terminology") {
 			singleItem, notEnumerated, Reserved13,
 			{
 
+			},
+
+			"background color for tty",
+			"get current custom for a terminal specifeid with TTY",
+			'TTpl', 'gBGc',
+			'nmbr',
+			"List of {Red, Green, Blue, Alpha}",
+			replyRequired, listOfItems, notEnumerated, Reserved13,
+			'TEXT',
+			"TTY name",
+			directParamRequired,
+			singleItem, notEnumerated, Reserved13,
+			{
+
+			},
+
+			"apply background color",
+			"Apply background color to a terminal specified with TTY",
+			'TTpl', 'apBG',
+			reply_none__,
+			'nmbr',
+			"List of {Red, Green, Blue, Alpha}",
+			directParamRequired,
+			listOfItems, notEnumerated, Reserved13,
+			{
+				"for tty", 'fTTY', 'TEXT',
+				"device name",
+				required,
+				singleItem, notEnumerated, Reserved13
 			}
 		},
 		{
