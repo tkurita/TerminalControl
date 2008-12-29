@@ -187,9 +187,7 @@ CGFloat getColorValue(CFNumberRef num, Boolean is16int)
 		NSLog(@"Failt to CFNumberGetValue");
 		return 0;
 	}
-	fprintf(stderr, "before div 65535 : %f\n", result);
 	if (is16int) result = result/65535;
-	fprintf(stderr, "after div 65535 : %f\n", result);
 
 	return result;
 }
