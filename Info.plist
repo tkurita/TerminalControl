@@ -38,5 +38,7 @@
 	</dict>
 	<key>OSAScriptingDefinition</key>
 	<string>${PRODUCT_NAME}.sdef</string>
+	<key>CSResourcesFileMapped</key>
+	<true/>
 </dict>
 </plist>
