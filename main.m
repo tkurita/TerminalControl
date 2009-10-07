@@ -1,5 +1,5 @@
 #include "AEUtils.h"
-
+#import "TerminalInterface.h"
 #include <Carbon/Carbon.h>
 
 #define useLog 0
@@ -150,7 +150,7 @@ OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long re
 #if useLog
 	NSLog([NSString stringWithFormat:@"Number of windows %d\n", [windows count]]);
 #endif
-	NSString *current_title = nil;
+	//NSString *current_title = nil;
 	for (id ttwindow in windows) {
 		if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
 			NSArray *tabs = [ttwindow tabControllers];

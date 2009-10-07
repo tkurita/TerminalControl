@@ -95,7 +95,9 @@ OSErr getFSRef(const AppleEvent *ev, AEKeyword theKey, FSRef *outFSRef_p)
 	
 	switch (typeCode) {
 		case typeAlias:
+#if !__LP64__			
 		case typeFSS:
+#endif
 		case typeFileURL:
 		case cObjectSpecifier:
 			err = getFSRefFromAE(ev, theKey, outFSRef_p);
