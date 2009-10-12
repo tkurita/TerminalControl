@@ -2,7 +2,7 @@
 #import "TerminalInterface.h"
 #include <Carbon/Carbon.h>
 
-#define useLog 0
+#define useLog 1
 
 #define kTTYParam 'fTTY'
 
@@ -131,9 +131,12 @@ bail:
 
 OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
 {
+#if useLog
+	NSLog(@"start BGColorForTTYEventHandler");
+#endif
 	OSErr resultCode = noErr;
 	if (!isTerminalApp()) {
-		putMissingValueToReply(reply);
+		resultCode = putMissingValueToReply(reply);
 		return resultCode;
 	}
 	
@@ -150,23 +153,35 @@ OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long re
 #if useLog
 	NSLog([NSString stringWithFormat:@"Number of windows %d\n", [windows count]]);
 #endif
-	//NSString *current_title = nil;
 	for (id ttwindow in windows) {
 		if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
 			NSArray *tabs = [ttwindow tabControllers];
 			for (id a_tab in tabs) {
 				if ([(NSString *)tty_name isEqualToString:[a_tab scriptTTY]]) {
 					bgcolor = [a_tab scriptBackgroundColor];
+#if useLog
+					NSLog(@"bgcolor : %@", bgcolor);
+					NSLog(@"Calibrated : %@", [bgcolor colorUsingColorSpaceName:NSCalibratedRGBColorSpace]);
+					NSLog(@"Device Color : %@", [bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]);
+#endif					
 					CGFloat cclist[4];
-					[bgcolor getRed:&cclist[0] green:&cclist[1] blue:&cclist[2] alpha:&cclist[3]];					
+					[[bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]
+						getRed:&cclist[0] green:&cclist[1] blue:&cclist[2] alpha:&cclist[3]];					
 					AEDescList resultList;
-					err = AECreateList(NULL, 0, FALSE, &resultList);
+					resultCode = AECreateList(NULL, 0, FALSE, &resultList);
+					if (resultCode != noErr) {
+						NSLog(@"Fail to AECreateList : %d", resultCode);
+						goto bail;
+					}
 					for (short n=0; n < 4; n++) { 
 						AEDesc ccdesc;
 						long cvalue = cclist[n]*65535;
 						err = AECreateDesc(typeSInt32, &cvalue, sizeof(cvalue), &ccdesc);
+						if (err != noErr) NSLog(@"Fail to AECreateDesc : %d", err);
 						err = AEPutDesc(&resultList, n+1, &ccdesc);
+						if (err != noErr) NSLog(@"Fail to AEPutDesc : %d", err);
 					}
+					resultCode = AEPutParamDesc(reply, keyAEResult, &resultList);
 					goto bail;
 				}
 			}
@@ -194,6 +209,7 @@ CGFloat getColorValue(CFNumberRef num, Boolean is16int)
 
 OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, long refcon) 
 {
+	NSLog(@"start ApplyBackgroundColorEventHandler");
 	Boolean is_success = 0;
 	OSErr resultCode = noErr;
 	CFMutableArrayRef array = NULL;
@@ -225,9 +241,10 @@ OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, 
 				NSArray *tabs = [ttwindow tabControllers];
 				for (id a_tab in tabs) {
 					if ([(NSString *)tty_name isEqualToString:[a_tab scriptTTY]]) {
-						NSColor* bgcolor = [a_tab scriptBackgroundColor];
+						NSColor *bgcolor = [a_tab scriptBackgroundColor];
 						CGFloat cclist[4];
-						[bgcolor getRed:&cclist[0] green:&cclist[1] blue:&cclist[2] alpha:&cclist[3]];
+						[[bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]
+						  getRed:&cclist[0] green:&cclist[1] blue:&cclist[2] alpha:&cclist[3]];
 						
 						for (short n=0; n < ccnum; n++) {
 							cclist[n] = getColorValue(CFArrayGetValueAtIndex(array, n), true);
