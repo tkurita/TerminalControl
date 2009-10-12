@@ -20,6 +20,9 @@ int isTerminalApp()
 
 OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
 {
+#if useLog
+	NSLog(@"start TitleForTTYEventHandler");
+#endif	
 	OSErr resultCode = noErr;
 	
 	if (!isTerminalApp()) {
