@@ -212,7 +212,9 @@ CGFloat getColorValue(CFNumberRef num, Boolean is16int)
 
 OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, long refcon) 
 {
+#if useLog
 	NSLog(@"start ApplyBackgroundColorEventHandler");
+#endif
 	Boolean is_success = 0;
 	OSErr resultCode = noErr;
 	CFMutableArrayRef array = NULL;
