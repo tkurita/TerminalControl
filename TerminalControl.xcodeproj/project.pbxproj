@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C26A8D11085A88B007E7FDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		2C26A8D21085A88B007E7FDB /* TerminalControl.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2C9A5E9B0E8D3459009680D1 /* TerminalControl.sdef */; };
+		2C26A8D41085A88B007E7FDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A5E790E8D3286009680D1 /* main.m */; };
+		2C26A8D51085A88B007E7FDB /* AEUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A5E7C0E8D3313009680D1 /* AEUtils.c */; };
+		2C26A8D81085A88B007E7FDB /* TerminalControl.r in Rez */ = {isa = PBXBuildFile; fileRef = 2C9A5ECD0E8D3BB5009680D1 /* TerminalControl.r */; };
+		2C26A8DA1085A88B007E7FDB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		2C26A8DB1085A88B007E7FDB /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A5E970E8D336C009680D1 /* Carbon.framework */; };
 		2C9A5E7A0E8D3286009680D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A5E790E8D3286009680D1 /* main.m */; };
 		2C9A5E7E0E8D3313009680D1 /* AEUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A5E7C0E8D3313009680D1 /* AEUtils.c */; };
 		2C9A5E980E8D336C009680D1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A5E970E8D336C009680D1 /* Carbon.framework */; };
@@ -21,6 +28,8 @@
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2C26A8E01085A88B007E7FDB /* TerminalControl.osax */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerminalControl.osax; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C26A8E11085A88B007E7FDB /* Info_10_5.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info_10_5.plist; sourceTree = "<group>"; };
 		2C5A4A53107C35A000828B7D /* TerminalInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalInterface.h; sourceTree = "<group>"; };
 		2C9A5E790E8D3286009680D1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C9A5E7C0E8D3313009680D1 /* AEUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AEUtils.c; sourceTree = "<group>"; };
@@ -34,6 +43,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2C26A8D91085A88B007E7FDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C26A8DA1085A88B007E7FDB /* Cocoa.framework in Frameworks */,
+				2C26A8DB1085A88B007E7FDB /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D5B49B3048680CD000E48DA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,6 +93,7 @@
 				2C9A5ECD0E8D3BB5009680D1 /* TerminalControl.r */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+				2C26A8E11085A88B007E7FDB /* Info_10_5.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -110,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				8D5B49B6048680CD000E48DA /* TerminalControl.osax */,
+				2C26A8E01085A88B007E7FDB /* TerminalControl.osax */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +154,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2C26A8CF1085A88B007E7FDB /* TerminalControl for 10.5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C26A8DD1085A88B007E7FDB /* Build configuration list for PBXNativeTarget "TerminalControl for 10.5" */;
+			buildPhases = (
+				2C26A8D01085A88B007E7FDB /* Resources */,
+				2C26A8D31085A88B007E7FDB /* Sources */,
+				2C26A8D61085A88B007E7FDB /* ShellScript */,
+				2C26A8D71085A88B007E7FDB /* Rez */,
+				2C26A8D91085A88B007E7FDB /* Frameworks */,
+				2C26A8DC1085A88B007E7FDB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TerminalControl for 10.5";
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = TerminalTitle;
+			productReference = 2C26A8E01085A88B007E7FDB /* TerminalControl.osax */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8D5B49AC048680CD000E48DA /* TerminalControl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "TerminalControl" */;
@@ -168,11 +209,21 @@
 			projectRoot = "";
 			targets = (
 				8D5B49AC048680CD000E48DA /* TerminalControl */,
+				2C26A8CF1085A88B007E7FDB /* TerminalControl for 10.5 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2C26A8D01085A88B007E7FDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C26A8D11085A88B007E7FDB /* InfoPlist.strings in Resources */,
+				2C26A8D21085A88B007E7FDB /* TerminalControl.sdef in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D5B49AF048680CD000E48DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -185,6 +236,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
+		2C26A8D71085A88B007E7FDB /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C26A8D81085A88B007E7FDB /* TerminalControl.r in Rez */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C9A5EB80E8D3ACC009680D1 /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
@@ -196,6 +255,34 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C26A8D61085A88B007E7FDB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/TerminalControl.sdef",
+			);
+			outputPaths = (
+				"$(SRCROOT)/TerminalControl.r",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/sdp -f a -o ${SRCROOT}/${PRODUCT_NAME}.r ${PRODUCT_NAME}.sdef";
+		};
+		2C26A8DC1085A88B007E7FDB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = printenv;
+		};
 		2C9A5EB00E8D39F2009680D1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,6 +314,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2C26A8D31085A88B007E7FDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C26A8D41085A88B007E7FDB /* main.m in Sources */,
+				2C26A8D51085A88B007E7FDB /* AEUtils.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D5B49B1048680CD000E48DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -309,6 +405,41 @@
 			};
 			name = Release;
 		};
+		2C26A8DE1085A88B007E7FDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TerminalControl_Prefix.pch;
+				INFOPLIST_FILE = Info_10_5.plist;
+				INSTALL_PATH = "$(HOME)/Library/ScriptingAdditions";
+				PRODUCT_NAME = TerminalControl;
+				SYMROOT = build_10_5;
+				WRAPPER_EXTENSION = osax;
+			};
+			name = Debug;
+		};
+		2C26A8DF1085A88B007E7FDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TerminalControl_Prefix.pch;
+				INFOPLIST_FILE = Info_10_5.plist;
+				INSTALL_PATH = /Library/ScriptingAdditions;
+				PRODUCT_NAME = TerminalControl;
+				SYMROOT = build_10_5;
+				WRAPPER_EXTENSION = osax;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -326,6 +457,15 @@
 			buildConfigurations = (
 				1DEB913F08733D840010E9CD /* Debug */,
 				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C26A8DD1085A88B007E7FDB /* Build configuration list for PBXNativeTarget "TerminalControl for 10.5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C26A8DE1085A88B007E7FDB /* Debug */,
+				2C26A8DF1085A88B007E7FDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
