@@ -1,8 +1,8 @@
 // !$*UTF8*$!
 {
 	089C1669FE841209C02AAC07 /* Project object */ = {
-		activeBuildConfigurationName = Debug;
-		activeTarget = 8D5B49AC048680CD000E48DA /* TerminalControl */;
+		activeBuildConfigurationName = Release;
+		activeTarget = 2C26A8CF1085A88B007E7FDB /* TerminalControl for 10.5 */;
 		codeSenseManager = 2C26A9B81085ABE6007E7FDB /* Code sense */;
 		perUserDictionary = {
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
@@ -10,7 +10,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					278,
 					20,
 					48.16259765625,
 					43,
@@ -30,6 +30,12 @@
 			PBXPerProjectTemplateStateSaveDate = 277195745;
 			PBXWorkspaceStateSaveDate = 277195745;
 		};
+		perUserProjectItems = {
+			2C26A9BD1085AC44007E7FDB /* PlistBookmark */ = 2C26A9BD1085AC44007E7FDB /* PlistBookmark */;
+			2C26A9BE1085AC44007E7FDB /* PBXBookmark */ = 2C26A9BE1085AC44007E7FDB /* PBXBookmark */;
+			2C26A9BF1085AC44007E7FDB /* PlistBookmark */ = 2C26A9BF1085AC44007E7FDB /* PlistBookmark */;
+			2C26A9C01085AC44007E7FDB /* PlistBookmark */ = 2C26A9C01085AC44007E7FDB /* PlistBookmark */;
+		};
 		sourceControlManager = 2C26A9B71085ABE6007E7FDB /* Source Control */;
 		userBuildSettings = {
 		};
@@ -47,6 +53,43 @@
 	2C26A9B81085ABE6007E7FDB /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	2C26A9BD1085AC44007E7FDB /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D5B49B7048680CD000E48DA /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C26A9BE1085AC44007E7FDB /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+	};
+	2C26A9BF1085AC44007E7FDB /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D5B49B7048680CD000E48DA /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C26A9C01085AC44007E7FDB /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 2147483647;
 	};
 	8D5B49AC048680CD000E48DA /* TerminalControl */ = {
 		activeExec = 0;
