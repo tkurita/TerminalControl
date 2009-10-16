@@ -2,7 +2,7 @@
 {
 	089C1669FE841209C02AAC07 /* Project object */ = {
 		activeBuildConfigurationName = Release;
-		activeTarget = 2C26A8CF1085A88B007E7FDB /* TerminalControl for 10.5 */;
+		activeTarget = 8D5B49AC048680CD000E48DA /* TerminalControl */;
 		codeSenseManager = 2C26A9B81085ABE6007E7FDB /* Code sense */;
 		perUserDictionary = {
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
@@ -12,7 +12,7 @@
 					20,
 					278,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 					20,
@@ -27,18 +27,229 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 277195745;
-			PBXWorkspaceStateSaveDate = 277195745;
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					438,
+					60,
+					20,
+					48.16259765625,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 277429045;
+			PBXWorkspaceStateSaveDate = 277429045;
 		};
 		perUserProjectItems = {
-			2C26A9BD1085AC44007E7FDB /* PlistBookmark */ = 2C26A9BD1085AC44007E7FDB /* PlistBookmark */;
-			2C26A9BE1085AC44007E7FDB /* PBXBookmark */ = 2C26A9BE1085AC44007E7FDB /* PBXBookmark */;
-			2C26A9BF1085AC44007E7FDB /* PlistBookmark */ = 2C26A9BF1085AC44007E7FDB /* PlistBookmark */;
-			2C26A9C01085AC44007E7FDB /* PlistBookmark */ = 2C26A9C01085AC44007E7FDB /* PlistBookmark */;
+			2C07D47810893B5400BCD47D /* PlistBookmark */ = 2C07D47810893B5400BCD47D /* PlistBookmark */;
+			2C07D48410893CB700BCD47D /* PlistBookmark */ = 2C07D48410893CB700BCD47D /* PlistBookmark */;
+			2C07D48610893CB700BCD47D /* PBXBookmark */ = 2C07D48610893CB700BCD47D /* PBXBookmark */;
+			2C07D48710893CB700BCD47D /* PlistBookmark */ = 2C07D48710893CB700BCD47D /* PlistBookmark */;
+			2C07D48810893CB700BCD47D /* PlistBookmark */ = 2C07D48810893CB700BCD47D /* PlistBookmark */;
+			2C07D48910893CB700BCD47D /* PlistBookmark */ = 2C07D48910893CB700BCD47D /* PlistBookmark */;
+			2C07D48A10893CB700BCD47D /* PlistBookmark */ = 2C07D48A10893CB700BCD47D /* PlistBookmark */;
+			2C07D48C10893CB700BCD47D /* PBXBookmark */ = 2C07D48C10893CB700BCD47D /* PBXBookmark */;
+			2C07D48D10893CB700BCD47D /* PlistBookmark */ = 2C07D48D10893CB700BCD47D /* PlistBookmark */;
+			2C07D48E10893CB700BCD47D /* PlistBookmark */ = 2C07D48E10893CB700BCD47D /* PlistBookmark */;
+			2C07D48F10893CB700BCD47D /* PlistBookmark */ = 2C07D48F10893CB700BCD47D /* PlistBookmark */;
+			2C07D49010893CB700BCD47D /* PlistBookmark */ = 2C07D49010893CB700BCD47D /* PlistBookmark */;
+			2C07D49110893CB700BCD47D /* PlistBookmark */ = 2C07D49110893CB700BCD47D /* PlistBookmark */;
+			2C07D49210893CB700BCD47D /* PlistBookmark */ = 2C07D49210893CB700BCD47D /* PlistBookmark */;
+			2C07D49310893CB700BCD47D /* PlistBookmark */ = 2C07D49310893CB700BCD47D /* PlistBookmark */;
+			2C26A9BD1085AC44007E7FDB = 2C26A9BD1085AC44007E7FDB /* PlistBookmark */;
+			2C26A9BE1085AC44007E7FDB = 2C26A9BE1085AC44007E7FDB /* PBXBookmark */;
+			2C26A9BF1085AC44007E7FDB = 2C26A9BF1085AC44007E7FDB /* PlistBookmark */;
+			2C26A9CA1085AC94007E7FDB = 2C26A9CA1085AC94007E7FDB /* PlistBookmark */;
 		};
 		sourceControlManager = 2C26A9B71085ABE6007E7FDB /* Source Control */;
 		userBuildSettings = {
 		};
+	};
+	2C07D47810893B5400BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D48410893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C07D48510893CB700BCD47D /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/build/Release/TerminalControl.osax/Contents/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D48510893CB700BCD47D /* Info.plist */ = {
+		isa = PBXFileReference;
+		name = Info.plist;
+		path = /Users/tkurita/Dev/Projects/TerminalControl/trunk/build/Release/TerminalControl.osax/Contents/Info.plist;
+		sourceTree = "<absolute>";
+	};
+	2C07D48610893CB700BCD47D /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2C9A5E9B0E8D3459009680D1 /* TerminalControl.sdef */;
+	};
+	2C07D48710893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleShortVersionString,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D48810893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D5B49B7048680CD000E48DA /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSHumanReadableCopyright,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info.plist;
+		rLen = 35;
+		rLoc = 0;
+	};
+	2C07D48910893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D48A10893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C07D48B10893CB700BCD47D /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/build/Release/TerminalControl.osax/Contents/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D48B10893CB700BCD47D /* Info.plist */ = {
+		isa = PBXFileReference;
+		name = Info.plist;
+		path = /Users/tkurita/Dev/Projects/TerminalControl/trunk/build/Release/TerminalControl.osax/Contents/Info.plist;
+		sourceTree = "<absolute>";
+	};
+	2C07D48C10893CB700BCD47D /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 2C9A5E9B0E8D3459009680D1 /* TerminalControl.sdef */;
+	};
+	2C07D48D10893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D5B49B7048680CD000E48DA /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleName,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D48E10893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSHumanReadableCopyright,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D48F10893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D5B49B7048680CD000E48DA /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSHumanReadableCopyright,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D49010893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleVersion,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D49110893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D5B49B7048680CD000E48DA /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSHumanReadableCopyright,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D49210893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleShortVersionString,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 2147483647;
+	};
+	2C07D49310893CB700BCD47D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D5B49B7048680CD000E48DA /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleIdentifier,
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
 	};
 	2C26A8CF1085A88B007E7FDB /* TerminalControl for 10.5 */ = {
 		activeExec = 0;
@@ -48,6 +259,7 @@
 		fallbackIsa = XCSourceControlManager;
 		isSCMEnabled = 0;
 		scmConfiguration = {
+			repositoryName = "SVN Repository";
 		};
 	};
 	2C26A9B81085ABE6007E7FDB /* Code sense */ = {
@@ -80,7 +292,7 @@
 		rLen = 0;
 		rLoc = 2147483647;
 	};
-	2C26A9C01085AC44007E7FDB /* PlistBookmark */ = {
+	2C26A9CA1085AC94007E7FDB /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
 		fallbackIsa = PBXBookmark;

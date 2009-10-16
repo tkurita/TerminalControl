@@ -232,6 +232,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -256,10 +258,12 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 							<array>
-								<real>249</real>
+								<real>22</real>
+								<real>227</real>
 							</array>
 							<key>PBXSmartGroupTreeModuleColumnsKey_v4</key>
 							<array>
+								<string>SCMStatusColumn</string>
 								<string>MainColumn</string>
 							</array>
 						</dict>
@@ -268,17 +272,19 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>089C166AFE841209C02AAC07</string>
+								<string>089C167CFE841241C02AAC07</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>0</integer>
+									<integer>12</integer>
+									<integer>11</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {249, 445}}</string>
+							<string>{{0, 0}, {249, 446}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -290,14 +296,16 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {266, 463}}</string>
+						<string>{{0, 0}, {266, 464}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
+							<string>SCMStatusColumn</string>
+							<real>22</real>
 							<string>MainColumn</string>
-							<real>249</real>
+							<real>227</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>326 310 788 504 0 0 1440 878 </string>
+						<string>142 321 988 505 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -313,7 +321,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Info_10_5.plist</string>
+								<string>Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -321,19 +329,30 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Info_10_5.plist</string>
+										<string>Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C26A9C01085AC44007E7FDB</string>
+										<string>2C07D49310893CB700BCD47D</string>
 										<key>history</key>
 										<array>
-											<string>2C26A9BD1085AC44007E7FDB</string>
-											<string>2C26A9BE1085AC44007E7FDB</string>
+											<string>2C07D48410893CB700BCD47D</string>
+											<string>2C07D48610893CB700BCD47D</string>
+											<string>2C07D48710893CB700BCD47D</string>
+											<string>2C07D48810893CB700BCD47D</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>2C26A9BF1085AC44007E7FDB</string>
+											<string>2C07D48910893CB700BCD47D</string>
+											<string>2C07D48A10893CB700BCD47D</string>
+											<string>2C07D48C10893CB700BCD47D</string>
+											<string>2C07D48D10893CB700BCD47D</string>
+											<string>2C07D48E10893CB700BCD47D</string>
+											<string>2C07D48F10893CB700BCD47D</string>
+											<string>2C07D49010893CB700BCD47D</string>
+											<string>2C07D49110893CB700BCD47D</string>
+											<string>2C07D49210893CB700BCD47D</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -345,18 +364,16 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {517, 285}}</string>
+								<string>{{0, 0}, {717, 286}}</string>
 								<key>RubberWindowFrame</key>
-								<string>326 310 788 504 0 0 1440 878 </string>
+								<string>142 321 988 505 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>285pt</string>
+							<string>286pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -367,9 +384,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 290}, {517, 173}}</string>
+								<string>{{0, 291}, {717, 173}}</string>
 								<key>RubberWindowFrame</key>
-								<string>326 310 788 504 0 0 1440 878 </string>
+								<string>142 321 988 505 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -378,7 +395,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>517pt</string>
+					<string>717pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -393,9 +410,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C26A9B41085ABE6007E7FDB</string>
+				<string>2C07D47910893B5400BCD47D</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C26A9B51085ABE6007E7FDB</string>
+				<string>2C07D47A10893B5400BCD47D</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -533,7 +550,7 @@
 		<string>/Users/tkurita/Dev/Projects/TerminalControl/trunk/TerminalControl.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>326 310 788 504 0 0 1440 878 </string>
+	<string>142 321 988 505 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -610,7 +627,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C26A9C11085AC44007E7FDB</string>
-				<string>2C26A9C21085AC44007E7FDB</string>
+				<string>2C07D49410893CB700BCD47D</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

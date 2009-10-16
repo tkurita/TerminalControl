@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C26A8D11085A88B007E7FDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		2C26A8D21085A88B007E7FDB /* TerminalControl.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2C9A5E9B0E8D3459009680D1 /* TerminalControl.sdef */; };
 		2C26A8D41085A88B007E7FDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A5E790E8D3286009680D1 /* main.m */; };
 		2C26A8D51085A88B007E7FDB /* AEUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A5E7C0E8D3313009680D1 /* AEUtils.c */; };
@@ -19,13 +18,11 @@
 		2C9A5E980E8D336C009680D1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A5E970E8D336C009680D1 /* Carbon.framework */; };
 		2C9A5E9C0E8D3459009680D1 /* TerminalControl.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2C9A5E9B0E8D3459009680D1 /* TerminalControl.sdef */; };
 		2C9A5ECE0E8D3BC1009680D1 /* TerminalControl.r in Rez */ = {isa = PBXBuildFile; fileRef = 2C9A5ECD0E8D3BB5009680D1 /* TerminalControl.r */; };
-		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2C26A8E01085A88B007E7FDB /* TerminalControl.osax */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerminalControl.osax; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +89,6 @@
 				2C9A5E9B0E8D3459009680D1 /* TerminalControl.sdef */,
 				2C9A5ECD0E8D3BB5009680D1 /* TerminalControl.r */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
-				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				2C26A8E11085A88B007E7FDB /* Info_10_5.plist */,
 			);
 			name = Resources;
@@ -219,7 +215,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C26A8D11085A88B007E7FDB /* InfoPlist.strings in Resources */,
 				2C26A8D21085A88B007E7FDB /* TerminalControl.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,7 +223,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				2C9A5E9C0E8D3459009680D1 /* TerminalControl.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,23 +328,13 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				089C167EFE841241C02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		1DEB913B08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -360,6 +344,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/ScriptingAdditions";
 				PRODUCT_NAME = TerminalControl;
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = osax;
 			};
 			name = Debug;
@@ -410,6 +395,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -420,6 +406,7 @@
 				INSTALL_PATH = "$(HOME)/Library/ScriptingAdditions";
 				PRODUCT_NAME = TerminalControl;
 				SYMROOT = build_10_5;
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = osax;
 			};
 			name = Debug;
