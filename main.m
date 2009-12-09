@@ -32,7 +32,7 @@ OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refc
 	
 	OSErr err;
 	CFStringRef tty_name = NULL;
-	err = getStringValue(ev, keyDirectObject, &tty_name);
+	tty_name = CFStringCreateWithEvent(ev, keyDirectObject, &err);
 	if (!tty_name) {
 		resultCode = errAEDescNotFound;
 		goto bail;
@@ -52,7 +52,7 @@ OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refc
 #if useLog
 					NSLog([a_tab scriptTTY]);
 #endif	
-					putStringToReply((CFStringRef)current_title, kCFStringEncodingUTF8, reply);
+					putStringToEvent(reply, keyAEResult, (CFStringRef)current_title, kCFStringEncodingUTF8);
 					goto bail;
 				}
 			}
@@ -86,12 +86,12 @@ OSErr ApplyTitleEventHandler(const AppleEvent *ev, AppleEvent *reply, long refco
 	if (!isTerminalApp()) goto bail;
 	
 	OSErr err;
-	err = getStringValue(ev, kTTYParam, &tty_name);	
+	tty_name = CFStringCreateWithEvent(ev, kTTYParam, &err);
 	if (err != noErr) {
 		resultCode = err;
 		goto bail;
 	}
-	err = getStringValue(ev, keyDirectObject, &new_title);
+	new_title = CFStringCreateWithEvent(ev, keyDirectObject, &err);
 	if (err != noErr) {
 		resultCode = err;
 		goto bail;
@@ -145,7 +145,7 @@ OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long re
 	
 	OSErr err;
 	CFStringRef tty_name = NULL;
-	err = getStringValue(ev, keyDirectObject, &tty_name);
+	tty_name = CFStringCreateWithEvent(ev, keyDirectObject, &err);
 	if (!tty_name) {
 		resultCode = errAEDescNotFound;
 		goto bail;
@@ -222,21 +222,24 @@ OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, 
 	if (!isTerminalApp()) goto bail;
 	
 	OSErr err;
-	err = getStringValue(ev, kTTYParam, &tty_name);	
+	tty_name = CFStringCreateWithEvent(ev, kTTYParam, &err);
 	if (err != noErr ) {
 		resultCode = err;
 		goto bail;
 	}
+	
 	err = getFloatArray(ev, keyDirectObject, &array);
 	if (err != noErr) {
+		fprintf(stderr, "Failed to getFloatArray\n");
 		resultCode = err;
 		goto bail;
 	}
 	int ccnum = 4;
-	CFIndex arraylength = CFArrayGetCount(array);
-	if (arraylength < 4) ccnum = arraylength;
 	
 	if (tty_name && array) {
+		CFIndex arraylength = CFArrayGetCount(array);
+		if (arraylength < 4) ccnum = arraylength;
+		
 		NSArray *windows = [NSApp windows];
 #if useLog
 		NSLog([NSString stringWithFormat:@"Number of windows %d\n", [windows count]]);
