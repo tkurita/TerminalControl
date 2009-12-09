@@ -24,14 +24,15 @@ OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refc
 	NSLog(@"start TitleForTTYEventHandler");
 #endif	
 	OSErr resultCode = noErr;
-	
+	CFStringRef tty_name = NULL;
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	if (!isTerminalApp()) {
 		putMissingValueToReply(reply);
-		return resultCode;
+		goto bail;
 	}
 	
 	OSErr err;
-	CFStringRef tty_name = NULL;
+	
 	tty_name = CFStringCreateWithEvent(ev, keyDirectObject, &err);
 	if (!tty_name) {
 		resultCode = errAEDescNotFound;
@@ -63,7 +64,7 @@ OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refc
 	
 bail:
 	safeRelease(tty_name);
-
+	[pool release];
 #if useLog
 	printf("current title\n");
 	CFShow(current_title);
@@ -82,7 +83,7 @@ OSErr ApplyTitleEventHandler(const AppleEvent *ev, AppleEvent *reply, long refco
 	CFStringRef new_title = NULL;
 	CFStringRef tty_name = NULL;	
 	Boolean is_success = 0;
-	
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	if (!isTerminalApp()) goto bail;
 	
 	OSErr err;
@@ -125,7 +126,7 @@ bail:
 	putBoolToReply(is_success, reply);
 	safeRelease(new_title);
 	safeRelease(tty_name);
-	
+	[pool release];
 #if useLog
 	printf("end ApplyTitleEventHandler\n");
 #endif
@@ -138,13 +139,14 @@ OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long re
 	NSLog(@"start BGColorForTTYEventHandler");
 #endif
 	OSErr resultCode = noErr;
+	CFStringRef tty_name = NULL;
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	if (!isTerminalApp()) {
 		resultCode = putMissingValueToReply(reply);
-		return resultCode;
+		goto bail;
 	}
 	
 	OSErr err;
-	CFStringRef tty_name = NULL;
 	tty_name = CFStringCreateWithEvent(ev, keyDirectObject, &err);
 	if (!tty_name) {
 		resultCode = errAEDescNotFound;
@@ -183,8 +185,10 @@ OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long re
 						if (err != noErr) NSLog(@"Fail to AECreateDesc : %d", err);
 						err = AEPutDesc(&resultList, n+1, &ccdesc);
 						if (err != noErr) NSLog(@"Fail to AEPutDesc : %d", err);
+						AEDisposeDesc(&ccdesc);
 					}
 					resultCode = AEPutParamDesc(reply, keyAEResult, &resultList);
+					AEDisposeDesc(&resultList);
 					goto bail;
 				}
 			}
@@ -192,6 +196,7 @@ OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long re
 	}
 bail:
 	safeRelease(tty_name);
+	[pool release];
 	return resultCode;
 }
 
@@ -218,7 +223,8 @@ OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, 
 	Boolean is_success = 0;
 	OSErr resultCode = noErr;
 	CFMutableArrayRef array = NULL;
-	CFStringRef tty_name = NULL;	
+	CFStringRef tty_name = NULL;
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	if (!isTerminalApp()) goto bail;
 	
 	OSErr err;
@@ -278,7 +284,7 @@ bail:
 	putBoolToReply(is_success, reply);
 	safeRelease(array);
 	safeRelease(tty_name);
-	
+	[pool release];
 #if useLog
 	printf("end ApplyTitleEventHandler\n");
 #endif
