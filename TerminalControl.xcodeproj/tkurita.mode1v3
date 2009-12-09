@@ -273,15 +273,18 @@
 							<array>
 								<string>089C166AFE841209C02AAC07</string>
 								<string>2C9A5E7B0E8D3313009680D1</string>
+								<string>08FB77AFFE84173DC02AAC07</string>
+								<string>32C88E010371C26100C91783</string>
 								<string>089C167CFE841241C02AAC07</string>
+								<string>089C1671FE841209C02AAC07</string>
+								<string>19C28FB8FE9D52D311CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>10</integer>
-									<integer>6</integer>
+									<integer>14</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -335,13 +338,14 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CE4BC6110CCFC870083834E</string>
+										<string>2C348AFB10CFB70A004EBDA1</string>
 										<key>history</key>
 										<array>
 											<string>2C07D48410893CB700BCD47D</string>
 											<string>2C07D48610893CB700BCD47D</string>
 											<string>2C2B984810ACE745007C570A</string>
-											<string>2CE4BC6010CCFC870083834E</string>
+											<string>2CE4BC6810CCFCEE0083834E</string>
+											<string>2C81320310CD3B31001A9107</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -407,9 +411,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CE4BC6210CCFC870083834E</string>
+				<string>2C348AFC10CFB70A004EBDA1</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2CE4BC6310CCFC870083834E</string>
+				<string>2C348AFD10CFB70A004EBDA1</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -623,7 +627,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C26A9C11085AC44007E7FDB</string>
-				<string>2C2B984E10ACE745007C570A</string>
+				<string>2CE4BC6D10CCFCEE0083834E</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
