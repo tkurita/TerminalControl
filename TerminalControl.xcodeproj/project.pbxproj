@@ -37,7 +37,7 @@
 		2C9A5ECD0E8D3BB5009680D1 /* TerminalControl.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; path = TerminalControl.r; sourceTree = "<group>"; };
 		32DBCF630370AF2F00C91783 /* TerminalControl_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalControl_Prefix.pch; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* TerminalControl.osax */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerminalControl.osax; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D5B49B7048680CD000E48DA /* Info_10_6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info_10_6.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +90,7 @@
 			children = (
 				2C9A5E9B0E8D3459009680D1 /* TerminalControl.sdef */,
 				2C9A5ECD0E8D3BB5009680D1 /* TerminalControl.r */,
-				8D5B49B7048680CD000E48DA /* Info.plist */,
+				8D5B49B7048680CD000E48DA /* Info_10_6.plist */,
 				2C26A8E11085A88B007E7FDB /* Info_10_5.plist */,
 			);
 			name = Resources;
@@ -156,12 +156,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C26A8DD1085A88B007E7FDB /* Build configuration list for PBXNativeTarget "TerminalControl for 10.5" */;
 			buildPhases = (
+				2C5D9F3012FB77050003B78A /* ShellScript */,
+				2C5DA05E12FB77B00003B78A /* ShellScript */,
+				2C26A8D61085A88B007E7FDB /* ShellScript */,
 				2C26A8D01085A88B007E7FDB /* Resources */,
 				2C26A8D31085A88B007E7FDB /* Sources */,
-				2C26A8D61085A88B007E7FDB /* ShellScript */,
 				2C26A8D71085A88B007E7FDB /* Rez */,
 				2C26A8D91085A88B007E7FDB /* Frameworks */,
-				2C26A8DC1085A88B007E7FDB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -266,18 +267,33 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/bin/sdp -f a -o ${SRCROOT}/${PRODUCT_NAME}.r ${PRODUCT_NAME}.sdef";
 		};
-		2C26A8DC1085A88B007E7FDB /* ShellScript */ = {
+		2C5D9F3012FB77050003B78A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "osascript <<EOS\ntry\ntell application \"Finder\"\n        set theItem to POSIX file \"${INSTALL_DIR}/${PRODUCT_NAME}\"\n        delete (theItem as alias)\nend tell\nend try\nreturn\nEOS\n";
+		};
+		2C5DA05E12FB77B00003B78A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Info_10_6.plist",
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Info_10_6.plist",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = printenv;
+			shellScript = "plist=`cat \"${SCRIPT_INPUT_FILE_0}\"`\neval echo \\\"$plist\\\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 		};
 		2C9A5EB00E8D39F2009680D1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -336,14 +352,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TerminalControl_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Info_10_6.plist;
 				INSTALL_PATH = "$(HOME)/Library/ScriptingAdditions";
 				PRODUCT_NAME = TerminalControl;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -359,7 +375,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TerminalControl_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Info_10_6.plist;
 				INSTALL_PATH = /Library/ScriptingAdditions;
 				PRODUCT_NAME = TerminalControl;
 				WRAPPER_EXTENSION = osax;
@@ -397,7 +413,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -424,6 +440,7 @@
 				INFOPLIST_FILE = Info_10_5.plist;
 				INSTALL_PATH = /Library/ScriptingAdditions;
 				PRODUCT_NAME = TerminalControl;
+				PRODUCT_VERSION = 1.2.2;
 				SYMROOT = build_10_5;
 				WRAPPER_EXTENSION = osax;
 			};
