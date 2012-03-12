@@ -80,6 +80,40 @@ resource 'aete' (0, "TerminalControl Terminology") {
 				"device name",
 				required,
 				singleItem, notEnumerated, Reserved13
+			},
+
+			"activate terminal for directory",
+			"activate tarminal tab or window for directory",
+			'TTpl', 'acDr',
+			'bool',
+			"",
+			replyRequired, singleItem, notEnumerated, Reserved13,
+			'file',
+			"a path to directory ",
+			directParamRequired,
+			singleItem, notEnumerated, Reserved13,
+			{
+				"allowing busy", 'awBy', 'bool',
+				"If false, busy terminal will be skipped. The default value is false.",
+				optional,
+				singleItem, notEnumerated, Reserved13
+			},
+
+			"make tab",
+			"Make a new tab",
+			'TTpl', 'mkTb',
+			'long',
+			"index of new tab. If failed, zero will be returned.",
+			replyRequired, singleItem, notEnumerated, Reserved13,
+			'TEXT',
+			"",
+			directParamOptional,
+			singleItem, notEnumerated, Reserved13,
+			{
+				"in", 'kfil', 'obj ',
+				"a reference to a window.",
+				optional,
+				singleItem, notEnumerated, Reserved13
 			}
 		},
 		{

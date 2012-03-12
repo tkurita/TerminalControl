@@ -1,10 +1,13 @@
 #include "AEUtils.h"
 #import "TerminalInterface.h"
 #include <Carbon/Carbon.h>
+#include <SystemConfiguration/SystemConfiguration.h>
 
-#define useLog 0
+#define useLog 1
 
 #define kTTYParam 'fTTY'
+#define kAllowingBusyParam 'awBy'
+#define kInWindowParam 'kfil'
 
 int isTerminalApp()
 {
@@ -16,6 +19,163 @@ int isTerminalApp()
 	CFShow(app_identifier);
 #endif
 	return (cresult == kCFCompareEqualTo);
+}
+
+OSErr MakeTabInHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
+{
+	OSErr resultCode = noErr;
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	if (!isTerminalApp()) {
+		putMissingValueToReply(reply);
+		goto bail;
+	}
+	OSErr err = noErr;
+	AppleEvent new_ev;
+	err = AEDuplicateDesc(ev,&new_ev);
+	if (err != noErr) {
+		resultCode = err;
+		fprintf(stderr, "Failed to AEDuplicateDesc : %d\n", err);
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Failed to AEDuplicateDesc."), kCFStringEncodingUTF8);
+		goto bail;
+	}
+	NSAppleEventDescriptor *event_in = [[[NSAppleEventDescriptor alloc] 
+											initWithAEDescNoCopy:&new_ev] autorelease];
+	NSAppleEventDescriptor *window_desc = [event_in paramDescriptorForKeyword:kInWindowParam];
+	NSAppleEventDescriptor *profile_desc = [event_in paramDescriptorForKeyword:keyDirectObject];
+
+	if (!window_desc) {
+		resultCode = errAEParamMissed;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("No 'in' parameter. A reference to a window must be passed as the 'in' parameter."), 
+						 kCFStringEncodingUTF8);
+		goto bail;
+	} else if ([window_desc descriptorType] != typeObjectSpecifier) {
+		resultCode = errAEWrongDataType;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("'in' parameter is no an object specifier. A reference to a window must be passed as the 'in' parameter."), 
+						 kCFStringEncodingUTF8);
+		goto bail;		
+	}
+	
+	NSScriptObjectSpecifier *window_specifier = [NSScriptObjectSpecifier 
+												 objectSpecifierWithDescriptor:window_desc];
+	
+	TTWindow *a_ttwindow = [window_specifier objectsByEvaluatingSpecifier];
+	if (!a_ttwindow || ![a_ttwindow isKindOfClass:NSClassFromString(@"TTWindow")]) {
+		resultCode = errAEWrongDataType;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("'in' parametr is invalid value."), 
+						 kCFStringEncodingUTF8);
+		goto bail;				
+	}
+	
+	id new_tab = nil;
+	if (profile_desc) {
+		TTProfile *profile = [[NSClassFromString(@"TTProfileManager") sharedProfileManager] 
+									  profileWithName:[profile_desc stringValue]];
+		if (!profile) {
+			putStringToEvent(reply, keyErrorString, 
+							 CFStringCreateWithFormat (kCFAllocatorDefault, 
+													   NULL ,CFSTR("Can't find profile \"%@\""),
+													   (CFStringRef)[profile_desc stringValue]),
+														kCFStringEncodingUTF8);
+			goto bail;
+		}
+		new_tab = [[a_ttwindow windowController] newTabWithProfile:profile];
+	} else {
+		new_tab = [[a_ttwindow windowController] newTab:nil];
+	}
+	
+	NSScriptObjectSpecifier *tab_specifier = [new_tab objectSpecifier];
+	NSAppleEventDescriptor *tab_desc = [tab_specifier descriptor];
+	
+	err = AEPutParamDesc(reply, keyAEResult, [tab_desc aeDesc]);
+							 
+bail:
+	[pool release];
+	return resultCode;
+}
+
+Boolean isEqualDir(NSString *targetPath, NSString *localHostName, NSURL *url)
+{
+	NSString *host = [url host];
+#if useLog
+	NSLog(@"Host :%@", host);
+#endif	
+	if ([host isEqualToString:localHostName] || [host isEqualToString:@"localhost"]) {
+		return [targetPath isEqualToString:[url path]];
+	}
+	return false;
+}
+
+OSErr ActivateTabForDirectoryHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
+{
+#if useLog
+	NSLog(@"start ActivateTabForDirectory");
+#endif	
+	OSErr resultCode = noErr;
+	CFURLRef url = NULL;
+	TTTabController *target_tab = nil;
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	if (!isTerminalApp()) {
+		putMissingValueToReply(reply);
+		goto bail;
+	}
+	
+	OSErr err;
+	Boolean allowing_busy = false;
+	err = getBoolValue(ev, kAllowingBusyParam, &allowing_busy);
+	
+	url = CFURLCreateWithEvent(ev, keyDirectObject, &err);
+# if useLog
+	NSLog(@"%@", (NSURL *)url);
+#endif
+	if (!url) {
+		resultCode = err;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("No valid file reference."), 
+						 kCFStringEncodingUTF8);		
+		goto bail;
+	}
+	NSString *target_path = [(NSURL *)url path];
+	NSString *local_hostname = [(NSString *)SCDynamicStoreCopyLocalHostName(NULL)
+									stringByAppendingString:@".local"] ;
+	NSArray *windows = [NSApp windows];
+	TTWindow *target_window = nil;
+	for (TTWindow *a_ttwindow in windows) {
+		if ([a_ttwindow respondsToSelector:@selector(tabControllers)]) {
+			NSArray *tabs = [a_ttwindow tabControllers];
+			for (id a_tab in tabs) {
+				if (isEqualDir(target_path, local_hostname, [a_tab workingDirectoryURL])) {
+					if (![a_tab scriptBusy]) {
+						target_window = a_ttwindow;
+						target_tab = a_tab;
+						goto bail;
+					} else if (allowing_busy && !target_tab) {
+						target_window = a_ttwindow;
+						target_tab = a_tab;						
+					}
+				}
+			}
+		}
+	}
+	
+bail:
+	if (target_tab) {
+		[target_window setSelectedTabController:target_tab];
+		[target_window makeKeyAndOrderFront:nil];
+		NSScriptObjectSpecifier *tab_specifier = [target_tab objectSpecifier];
+		NSAppleEventDescriptor *tab_desc = [tab_specifier descriptor];
+		resultCode = AEPutParamDesc(reply, keyAEResult, [tab_desc aeDesc]);
+	} else {
+		err = putMissingValueToReply(reply);
+	}
+
+	safeRelease(url);
+	[pool release];
+	return resultCode;
+
 }
 
 OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
@@ -41,7 +201,7 @@ OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refc
 	
 	NSArray *windows = [NSApp windows];
 #if useLog
-	NSLog([NSString stringWithFormat:@"Number of windows %d\n", [windows count]]);
+	NSLog(@"Number of windows : %d", [windows count]);
 #endif
 	NSString *current_title = nil;
 	for (id ttwindow in windows) {
@@ -51,7 +211,7 @@ OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refc
 				if ([(NSString *)tty_name isEqualToString:[a_tab scriptTTY]]) {
 					current_title = [a_tab customTitle];
 #if useLog
-					NSLog([a_tab scriptTTY]);
+					NSLog(@"tty : %@", [a_tab scriptTTY]);
 #endif	
 					putStringToEvent(reply, keyAEResult, (CFStringRef)current_title, kCFStringEncodingUTF8);
 					goto bail;
@@ -104,7 +264,7 @@ OSErr ApplyTitleEventHandler(const AppleEvent *ev, AppleEvent *reply, long refco
 	if (tty_name && new_title) {
 		NSArray *windows = [NSApp windows];
 #if useLog
-		NSLog([NSString stringWithFormat:@"Number of windows %d\n", [windows count]]);
+		NSLog(@"Number of windows : %d", [windows count]);
 #endif		
 		for (id ttwindow in windows) {
 			if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
@@ -156,7 +316,7 @@ OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long re
 	NSColor *bgcolor;
 	NSArray *windows = [NSApp windows];
 #if useLog
-	NSLog([NSString stringWithFormat:@"Number of windows %d\n", [windows count]]);
+	NSLog(@"Number of windows : %d", [windows count]);
 #endif
 	for (id ttwindow in windows) {
 		if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
@@ -248,7 +408,7 @@ OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, 
 		
 		NSArray *windows = [NSApp windows];
 #if useLog
-		NSLog([NSString stringWithFormat:@"Number of windows %d\n", [windows count]]);
+		NSLog(@"Number of windows : %d", [windows count]);
 #endif		
 		for (id ttwindow in windows) {
 			if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
@@ -266,7 +426,7 @@ OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, 
 						bgcolor = [NSColor colorWithCalibratedRed:cclist[0] green:cclist[1] 
 															 blue:cclist[2] alpha:cclist[3]];		
 #if useLog
-						NSLog([bgcolor description]);
+						NSLog(@"%@", [bgcolor description]);
 #endif	
 						
 						[a_tab setScriptBackgroundColor:bgcolor];

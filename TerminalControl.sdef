@@ -23,5 +23,15 @@
 			</direct-parameter>
 			<parameter name="for tty" code="fTTY" description="device name" type="text"/>
 		</command>
+		<command name="activate terminal for directory" code="TTplacDr" description="activate tarminal tab or window for directory">
+			<direct-parameter description="a path to directory " type="file"/>
+			<parameter name="allowing busy" code="awBy" description="If false, busy terminal will be skipped. The default value is false." type="boolean" optional="yes"/>
+			<result type="boolean"/>
+		</command>
+		<command name="make tab" code="TTplmkTb" description="Make a new tab">
+			<direct-parameter type="text" optional="yes"/>
+			<parameter name="in" code="kfil" description="a reference to a window." type="specifier" optional="yes"/>
+			<result description="index of new tab. If failed, zero will be returned." type="integer"/>
+		</command>
 	</suite>
 </dictionary>

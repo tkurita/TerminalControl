@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>6</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>for Mac OS X 10.6, copyright 2008-2011, Tetsuro KURITA</string>
 	<key>CFBundleShortVersionString</key>
@@ -61,6 +61,24 @@
 			<dict>
 				<key>Handler</key>
 				<string>BGColorForTTYEventHandler</string>
+				<key>ThreadSafe</key>
+				<false/>
+				<key>Context</key>
+				<string>Process</string>
+			</dict>
+			<key>TTplacDr</key>
+			<dict>
+				<key>Handler</key>
+				<string>ActivateTabForDirectoryHandler</string>
+				<key>ThreadSafe</key>
+				<false/>
+				<key>Context</key>
+				<string>Process</string>
+			</dict>
+			<key>TTplmkTb</key>
+			<dict>
+				<key>Handler</key>
+				<string>MakeTabInHandler</string>
 				<key>ThreadSafe</key>
 				<false/>
 				<key>Context</key>
