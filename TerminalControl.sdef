@@ -24,7 +24,7 @@
 			</direct-parameter>
 			<parameter name="for tty" code="fTTY" description="device name" type="text"/>
 		</command>
-		<command name="activate terminal for directory" code="TTplacDr" description="activate tarminal tab or window for directory">
+		<command name="activate terminal for directory" code="TTplacDr" description="activate tarminal tab or window for directory. Work after Mac OS 10.7.">
 			<direct-parameter description="a path to directory " type="file"/>
 			<parameter name="allowing busy" code="awBy" description="If false, busy terminal will be skipped. The default value is false." type="boolean" optional="yes"/>
 			<result type="boolean"/>

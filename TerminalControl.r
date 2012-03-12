@@ -87,7 +87,7 @@ resource 'aete' (0, "TerminalControl Terminology") {
 			},
 
 			"activate terminal for directory",
-			"activate tarminal tab or window for directory",
+			"activate tarminal tab or window for directory. Work after Mac OS 10.7.",
 			'TTpl', 'acDr',
 			'bool',
 			"",

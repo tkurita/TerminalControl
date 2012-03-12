@@ -3,7 +3,7 @@
 #include <Carbon/Carbon.h>
 #include <SystemConfiguration/SystemConfiguration.h>
 
-#define useLog 1
+#define useLog 0
 
 #define kTTYParam 'fTTY'
 #define kAllowingBusyParam 'awBy'
