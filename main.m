@@ -8,6 +8,7 @@
 #define kTTYParam 'fTTY'
 #define kAllowingBusyParam 'awBy'
 #define kInWindowParam 'kfil'
+#define kToTabParam 'tTab'
 
 int isTerminalApp()
 {
@@ -240,29 +241,67 @@ OSErr ApplyTitleEventHandler(const AppleEvent *ev, AppleEvent *reply, long refco
 	printf("start ApplyTitleEventHandler\n	");
 #endif	
 	OSErr resultCode = noErr;
-	CFStringRef new_title = NULL;
-	CFStringRef tty_name = NULL;	
+	NSString *new_title = nil;
+	NSString *tty_name = nil;	
 	Boolean is_success = 0;
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	if (!isTerminalApp()) goto bail;
 	
 	OSErr err;
-	tty_name = CFStringCreateWithEvent(ev, kTTYParam, &err);
-	if (err != noErr) {
-		resultCode = err;
-		goto bail;
-	}
-	new_title = CFStringCreateWithEvent(ev, keyDirectObject, &err);
-	if (err != noErr) {
-		resultCode = err;
-		goto bail;
-	}
-#if useLog
-	CFShow(new_title);
-#endif	
 	
-	if (tty_name && new_title) {
-		NSArray *windows = [NSApp windows];
+	AppleEvent new_ev;
+	err = AEDuplicateDesc(ev,&new_ev);
+	if (err != noErr) {
+		resultCode = err;
+		fprintf(stderr, "Failed to AEDuplicateDesc : %d\n", err);
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Failed to AEDuplicateDesc."), kCFStringEncodingUTF8);
+		goto bail;
+	}
+	NSAppleEventDescriptor *event_in = [[[NSAppleEventDescriptor alloc] 
+										 initWithAEDescNoCopy:&new_ev] autorelease];
+	new_title = [[event_in paramDescriptorForKeyword:keyDirectObject] stringValue];
+	if (!new_title) {
+		resultCode = errAEParamMissed;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("No vaild title."), 
+						 kCFStringEncodingUTF8);
+		goto bail;
+	}
+	NSAppleEventDescriptor *tab_desc = [event_in paramDescriptorForKeyword:kToTabParam];
+	if (tab_desc) {
+		if ([tab_desc descriptorType] != typeObjectSpecifier) {
+			resultCode = errAENotAnObjSpec;
+			putStringToEvent(reply, keyErrorString, 
+							 CFSTR("The terminal tab specifier is invalid."), 
+							 kCFStringEncodingUTF8);
+			goto bail;	
+		}
+		NSScriptObjectSpecifier *tab_specifier = [NSScriptObjectSpecifier 
+												objectSpecifierWithDescriptor:tab_desc];
+		id a_tab = [tab_specifier objectsByEvaluatingSpecifier];
+		if ([a_tab respondsToSelector:@selector(setCustomTitle:)]) {
+			[a_tab setCustomTitle:new_title];
+			is_success = 1;
+		} else {
+			resultCode = errAEWrongDataType;
+			putStringToEvent(reply, keyErrorString, 
+							 CFSTR("Can't set custom title."), 
+							 kCFStringEncodingUTF8);
+			goto bail;
+		}		
+	} else {
+		NSAppleEventDescriptor *tty_desc = [event_in paramDescriptorForKeyword:kTTYParam];
+		if (!tty_desc) {
+			resultCode = errAEDescNotFound;
+			putStringToEvent(reply, keyErrorString, 
+							 CFSTR("No valid tarminal specifier."), 
+							 kCFStringEncodingUTF8);
+			goto bail;	
+			
+		}
+		tty_name = [tty_desc stringValue];	
+		NSArray *windows = [NSApp orderedWindows];
 #if useLog
 		NSLog(@"Number of windows : %d", [windows count]);
 #endif		
@@ -271,21 +310,17 @@ OSErr ApplyTitleEventHandler(const AppleEvent *ev, AppleEvent *reply, long refco
 				NSArray *tabs = [ttwindow tabControllers];
 				for (id a_tab in tabs) {
 					if ([(NSString *)tty_name isEqualToString:[a_tab scriptTTY]]) {
-						[a_tab setCustomTitle:(NSString *)new_title];
+						[a_tab setCustomTitle:new_title];
 						is_success = 1;
 						goto bail;
 					}
 				}
 			}
 		}
-	} else {
-		resultCode = errAEDescNotFound;
-	}
+	} 
 	
 bail:
 	putBoolToReply(is_success, reply);
-	safeRelease(new_title);
-	safeRelease(tty_name);
 	[pool release];
 #if useLog
 	printf("end ApplyTitleEventHandler\n");

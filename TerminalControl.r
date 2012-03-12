@@ -35,7 +35,11 @@ resource 'aete' (0, "TerminalControl Terminology") {
 			{
 				"for tty", 'fTTY', 'TEXT',
 				"device name",
-				required,
+				optional,
+				singleItem, notEnumerated, Reserved13,
+				"to", 'tTab', 'obj ',
+				"a reference to a terminal tab",
+				optional,
 				singleItem, notEnumerated, Reserved13
 			},
 
@@ -106,7 +110,7 @@ resource 'aete' (0, "TerminalControl Terminology") {
 			"index of new tab. If failed, zero will be returned.",
 			replyRequired, singleItem, notEnumerated, Reserved13,
 			'TEXT',
-			"",
+			"profile name",
 			directParamOptional,
 			singleItem, notEnumerated, Reserved13,
 			{

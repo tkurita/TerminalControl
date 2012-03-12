@@ -4,7 +4,8 @@
 	<suite name="TerminalControl Suite" code="TTpl" description="Control Terminal.app">
 		<command name="apply title" code="TTplaplT" description="Apply title to a terminal specified with TTY">
 			<direct-parameter description="title of terminal" type="text"/>
-			<parameter name="for tty" code="fTTY" description="device name" type="text"/>
+			<parameter name="for tty" code="fTTY" description="device name" type="text" optional="yes"/>
+			<parameter name="to" code="tTab" description="a reference to a terminal tab" type="specifier" optional="yes"/>
 			<result description="true if successed to activate specified process." type="boolean"/>
 		</command>
 		<command name="title for tty" code="TTplgetT" description="get current custom for a terminal specifeid with TTY">
@@ -29,7 +30,7 @@
 			<result type="boolean"/>
 		</command>
 		<command name="make tab" code="TTplmkTb" description="Make a new tab">
-			<direct-parameter type="text" optional="yes"/>
+			<direct-parameter description="profile name" type="text" optional="yes"/>
 			<parameter name="in" code="kfil" description="a reference to a window." type="specifier" optional="yes"/>
 			<result description="index of new tab. If failed, zero will be returned." type="integer"/>
 		</command>
