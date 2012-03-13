@@ -118,6 +118,17 @@ resource 'aete' (0, "TerminalControl Terminology") {
 				"a reference to a window.",
 				optional,
 				singleItem, notEnumerated, Reserved13
+			},
+
+			"TerminalControl version",
+			"get version number of TerminalControl",
+			'TTpl', 'Vers',
+			'TEXT',
+			"version number",
+			replyRequired, singleItem, notEnumerated, Reserved13,
+			dp_none__,
+			{
+
 			}
 		},
 		{

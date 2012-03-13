@@ -9,6 +9,7 @@
 #define kAllowingBusyParam 'awBy'
 #define kInWindowParam 'kfil'
 #define kToTabParam 'tTab'
+#define BUNDLE_ID CFSTR("Scriptfactory.osax.TerminalControl")
 
 int isTerminalApp()
 {
@@ -20,6 +21,20 @@ int isTerminalApp()
 	CFShow(app_identifier);
 #endif
 	return (cresult == kCFCompareEqualTo);
+}
+
+OSErr versionHandler(const AppleEvent *ev, AppleEvent *reply, SRefCon refcon)
+{
+#if useLog
+	fprintf(stderr, "start versionHandler\n");
+#endif			
+	OSErr err;
+	CFBundleRef	bundle = CFBundleGetBundleWithIdentifier(BUNDLE_ID);
+	CFDictionaryRef info = CFBundleGetInfoDictionary(bundle);
+	
+	CFStringRef vers = CFDictionaryGetValue(info, CFSTR("CFBundleShortVersionString"));
+	err = putStringToEvent(reply, keyAEResult, vers, kCFStringEncodingUnicode);
+	return err;
 }
 
 OSErr MakeTabInHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)

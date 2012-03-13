@@ -34,5 +34,8 @@
 			<parameter name="in" code="kfil" description="a reference to a window." type="specifier" optional="yes"/>
 			<result description="index of new tab. If failed, zero will be returned." type="integer"/>
 		</command>
+		<command name="TerminalControl version" code="TTplVers" description="get version number of TerminalControl">
+			<result description="version number" type="text"/>
+		</command>
 	</suite>
 </dictionary>
