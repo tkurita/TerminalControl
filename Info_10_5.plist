@@ -36,6 +36,10 @@
 		<dict>
 			<key>TTplapBG</key>
 			<string>ApplyBackgroundColorEventHandler</string>
+			<key>TTplmkTb</key>
+			<string>MakeTabInHandler</string>
+			<key>TTplVers</key>
+			<string>VersionHandler</string>
 			<key>TTplaplT</key>
 			<string>ApplyTitleEventHandler</string>
 			<key>TTplgBGc</key>
