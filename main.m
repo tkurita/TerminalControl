@@ -23,7 +23,7 @@ int isTerminalApp()
 	return (cresult == kCFCompareEqualTo);
 }
 
-OSErr versionHandler(const AppleEvent *ev, AppleEvent *reply, SRefCon refcon)
+OSErr VersionHandler(const AppleEvent *ev, AppleEvent *reply, SRefCon refcon)
 {
 #if useLog
 	fprintf(stderr, "start versionHandler\n");

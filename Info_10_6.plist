@@ -30,6 +30,15 @@
 	<dict>
 		<key>Events</key>
 		<dict>
+			<key>TTplVers</key>
+			<dict>
+				<key>Handler</key>
+				<string>VersionHandler</string>
+				<key>ThreadSafe</key>
+				<true/>
+				<key>Context</key>
+				<string>Process</string>
+			</dict>
 			<key>TTplaplT</key>
 			<dict>
 				<key>Handler</key>

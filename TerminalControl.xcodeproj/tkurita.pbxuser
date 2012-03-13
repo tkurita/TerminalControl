@@ -424,9 +424,9 @@
 	};
 	2C9A5E790E8D3286009680D1 /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {824, 6474}}";
-			sepNavSelRange = "{2651, 71}";
-			sepNavVisRange = "{266, 1892}";
+			sepNavIntBoundsRect = "{{0, 0}, {985, 6396}}";
+			sepNavSelRange = "{3975, 5}";
+			sepNavVisRange = "{2883, 1091}";
 			sepNavWindowFrame = "{{136, 99}, {791, 779}}";
 		};
 	};
@@ -452,9 +452,9 @@
 	};
 	2C9A5ECD0E8D3BB5009680D1 /* TerminalControl.r */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1074, 1204}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1251, 1742}}";
 			sepNavSelRange = "{835, 0}";
-			sepNavVisRange = "{0, 1234}";
+			sepNavVisRange = "{0, 1215}";
 		};
 	};
 	32DBCF630370AF2F00C91783 /* TerminalControl_Prefix.pch */ = {
