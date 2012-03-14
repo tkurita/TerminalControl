@@ -11,7 +11,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>for Mac OS X 10.6, copyright 2008-2012, Tetsuro KURITA</string>
 	<key>CFBundleShortVersionString</key>
-	<string>${PRODUCT_VERSION} </string>
+	<string>${PRODUCT_VERSION}</string>
 	<key>CFBundleGetInfoString</key>
 	<string>${PRODUCT_VERSION}  for Mac OS X 10.6, copyright 2008-2012, Tetsuro KURITA</string>
 	<key>CFBundleIdentifier</key>
