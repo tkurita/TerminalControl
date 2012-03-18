@@ -182,12 +182,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "TerminalControl" */;
 			buildPhases = (
+				2C107CEB1515BFB30079EB71 /* ShellScript */,
 				8D5B49AF048680CD000E48DA /* Resources */,
+				2C107CED1515C0120079EB71 /* ShellScript */,
 				8D5B49B1048680CD000E48DA /* Sources */,
 				2C9A5EB00E8D39F2009680D1 /* ShellScript */,
 				2C9A5EB80E8D3ACC009680D1 /* Rez */,
 				8D5B49B3048680CD000E48DA /* Frameworks */,
-				2C9A5EB50E8D3A6A009680D1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -263,6 +264,38 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C107CEB1515BFB30079EB71 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			comments = "インストール前に、インストールされている product をゴミ箱に移動する。";
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "osascript <<EOS\ntry\ntell application \"Finder\"\n        set an_item to POSIX file \"${INSTALL_DIR}/${PRODUCT_NAME}\"\n        delete (an_item as alias)\nend tell\nend try\nreturn\nEOS\n";
+		};
+		2C107CED1515C0120079EB71 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			comments = "Info_10_6.plist を Resources にコピー";
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Info_10_6.plist",
+				"$(SRCROOT)/Info_10_5.plist",
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Info_10_6.plist",
+				"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Info_10_5.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "plist=`cat \"${SCRIPT_INPUT_FILE_0}\"`\neval echo \\\"$plist\\\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n\nplist=`cat \"${SCRIPT_INPUT_FILE_1}\"`\neval echo \\\"$plist\\\" > \"${SCRIPT_OUTPUT_FILE_1}\"\n";
+		};
 		2C26A8D61085A88B007E7FDB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,7 +322,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "osascript <<EOS\ntry\ntell application \"Finder\"\n        set theItem to POSIX file \"${INSTALL_DIR}/${PRODUCT_NAME}\"\n        delete (theItem as alias)\nend tell\nend try\nreturn\nEOS\n";
+			shellScript = "osascript <<EOS\ntry\ntell application \"Finder\"\n        set an_item to POSIX file \"${INSTALL_DIR}/${PRODUCT_NAME}\"\n        delete (an_item as alias)\nend tell\nend try\nreturn\nEOS\n";
 		};
 		2C5DA05E12FB77B00003B78A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -320,19 +353,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/bin/sdp -f a -o ${SRCROOT}/${PRODUCT_NAME}.r ${PRODUCT_NAME}.sdef";
-		};
-		2C9A5EB50E8D3A6A009680D1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = printenv;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -367,7 +387,7 @@
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -390,7 +410,7 @@
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -436,7 +456,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;

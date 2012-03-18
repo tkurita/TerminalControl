@@ -1,7 +1,7 @@
 // !$*UTF8*$!
 {
 	089C1669FE841209C02AAC07 /* Project object */ = {
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = Debug;
 		activeTarget = 8D5B49AC048680CD000E48DA /* TerminalControl */;
 		addToTargets = (
 		);
@@ -77,10 +77,15 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 353410671;
-			PBXWorkspaceStateSaveDate = 353410671;
+			PBXPerProjectTemplateStateSaveDate = 353748795;
+			PBXWorkspaceStateSaveDate = 353748795;
 		};
 		perUserProjectItems = {
+			2C107CF31515C37D0079EB71 = 2C107CF31515C37D0079EB71 /* PBXTextBookmark */;
+			2C107CF41515C37D0079EB71 = 2C107CF41515C37D0079EB71 /* PlistBookmark */;
+			2C107CF51515C37D0079EB71 = 2C107CF51515C37D0079EB71 /* PlistBookmark */;
+			2C107CFC1515C6BE0079EB71 = 2C107CFC1515C6BE0079EB71 /* PlistBookmark */;
+			2C107CFD1515C7150079EB71 = 2C107CFD1515C7150079EB71 /* PlistBookmark */;
 			2C11B3D3150A058B0018BB70 = 2C11B3D3150A058B0018BB70 /* PlistBookmark */;
 			2C11B436150A29E30018BB70 = 2C11B436150A29E30018BB70 /* PBXTextBookmark */;
 			2C11B438150A29E30018BB70 = 2C11B438150A29E30018BB70 /* PBXTextBookmark */;
@@ -94,14 +99,68 @@
 			2C4466CF15102D270042904C = 2C4466CF15102D270042904C /* PBXBookmark */;
 			2C4466D015102D270042904C = 2C4466D015102D270042904C /* PBXTextBookmark */;
 			2C4466D115102D270042904C = 2C4466D115102D270042904C /* PBXTextBookmark */;
-			2C4466D215102D270042904C = 2C4466D215102D270042904C /* PlistBookmark */;
-			2C4466D315102D270042904C = 2C4466D315102D270042904C /* PlistBookmark */;
-			2C4466D415102D270042904C = 2C4466D415102D270042904C /* PlistBookmark */;
+			2C44680815109EFE0042904C = 2C44680815109EFE0042904C /* PlistBookmark */;
+			2C44680915109EFE0042904C = 2C44680915109EFE0042904C /* PlistBookmark */;
+			2C44680A15109EFE0042904C = 2C44680A15109EFE0042904C /* PlistBookmark */;
 			2C9A5E790E8D3286009680D1 = 2C9A5E790E8D3286009680D1 /* main.m */;
 		};
 		sourceControlManager = 2C26A9B71085ABE6007E7FDB /* Source Control */;
 		userBuildSettings = {
 		};
+	};
+	2C107CF31515C37D0079EB71 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C9A5E790E8D3286009680D1 /* main.m */;
+		name = "main.m: 26";
+		rLen = 71;
+		rLoc = 658;
+		rType = 0;
+		vrLen = 1042;
+		vrLoc = 149;
+	};
+	2C107CF41515C37D0079EB71 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	2C107CF51515C37D0079EB71 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	2C107CFC1515C6BE0079EB71 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	2C107CFD1515C7150079EB71 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
+		rLen = 0;
+		rLoc = 9223372036854775808;
 	};
 	2C11B3D3150A058B0018BB70 /* PlistBookmark */ = {
 		isa = PlistBookmark;
@@ -281,38 +340,36 @@
 		vrLen = 1091;
 		vrLoc = 2883;
 	};
-	2C4466D215102D270042904C /* PlistBookmark */ = {
+	2C44680815109EFE0042904C /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 8D5B49B7048680CD000E48DA /* Info_10_6.plist */;
 		fallbackIsa = PBXBookmark;
 		isK = 0;
 		kPath = (
-			OSAXHandlers,
-			Events,
-			TTplVers,
+			CFBundleIdentifier,
 		);
 		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_6.plist;
 		rLen = 0;
 		rLoc = 9223372036854775808;
 	};
-	2C4466D315102D270042904C /* PlistBookmark */ = {
+	2C44680915109EFE0042904C /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
 		fallbackIsa = PBXBookmark;
 		isK = 0;
 		kPath = (
+			CFBundleName,
 		);
 		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
-		rLen = 0;
-		rLoc = 9223372036854775808;
+		rLen = 15;
+		rLoc = 0;
 	};
-	2C4466D415102D270042904C /* PlistBookmark */ = {
+	2C44680A15109EFE0042904C /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 2C26A8E11085A88B007E7FDB /* Info_10_5.plist */;
 		fallbackIsa = PBXBookmark;
 		isK = 0;
 		kPath = (
-			CFBundleIdentifier,
 		);
 		name = /Users/tkurita/Dev/Projects/TerminalControl/trunk/Info_10_5.plist;
 		rLen = 0;
@@ -334,9 +391,9 @@
 	};
 	2C9A5E790E8D3286009680D1 /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {985, 6396}}";
-			sepNavSelRange = "{3975, 5}";
-			sepNavVisRange = "{2883, 1091}";
+			sepNavIntBoundsRect = "{{0, 0}, {985, 6422}}";
+			sepNavSelRange = "{658, 71}";
+			sepNavVisRange = "{149, 1042}";
 			sepNavWindowFrame = "{{136, 99}, {791, 779}}";
 		};
 	};

@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>8</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>for Mac OS X 10.6, copyright 2008-2012, Tetsuro KURITA</string>
 	<key>CFBundleShortVersionString</key>
