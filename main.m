@@ -413,10 +413,15 @@ bail:
 CGFloat getColorValue(CFNumberRef num, Boolean is16int)
 {
 #if useLog
-	fprintf(stderr, "Start getColorValue\n");
-#endif	
+	NSLog(@"Start getColorValue : %@, %d", num, CFNumberGetType(num));
+#endif
 	CGFloat result;
-	if (!CFNumberGetValue(num, kCFNumberFloat32Type, &result)) {
+#if defined(__LP64__) && __LP64__	
+	CFNumberType cg_float_type = kCFNumberFloat64Type;
+#else
+	CFNumberType cg_float_type = kCFNumberFloat32Type;
+#endif
+	if (!CFNumberGetValue(num, cg_float_type, &result)) {
 		NSLog(@"Failt to CFNumberGetValue");
 		return 0;
 	}
@@ -450,6 +455,9 @@ OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, 
 		resultCode = err;
 		goto bail;
 	}
+#if useLog
+	NSLog(@"passed color : %@", array);
+#endif	
 	int ccnum = 4;
 	
 	if (tty_name && array) {

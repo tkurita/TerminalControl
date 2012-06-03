@@ -19,6 +19,7 @@
 		2C9A5E980E8D336C009680D1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9A5E970E8D336C009680D1 /* Carbon.framework */; };
 		2C9A5E9C0E8D3459009680D1 /* TerminalControl.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2C9A5E9B0E8D3459009680D1 /* TerminalControl.sdef */; };
 		2C9A5ECE0E8D3BC1009680D1 /* TerminalControl.r in Rez */ = {isa = PBXBuildFile; fileRef = 2C9A5ECD0E8D3BB5009680D1 /* TerminalControl.r */; };
+		2CE4835F157B4E960053D446 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C11B420150A29A00018BB70 /* SystemConfiguration.framework */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 			files = (
 				2C26A8DA1085A88B007E7FDB /* Cocoa.framework in Frameworks */,
 				2C26A8DB1085A88B007E7FDB /* Carbon.framework in Frameworks */,
+				2CE4835F157B4E960053D446 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,10 +185,10 @@
 			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "TerminalControl" */;
 			buildPhases = (
 				2C107CEB1515BFB30079EB71 /* ShellScript */,
-				8D5B49AF048680CD000E48DA /* Resources */,
 				2C107CED1515C0120079EB71 /* ShellScript */,
-				8D5B49B1048680CD000E48DA /* Sources */,
 				2C9A5EB00E8D39F2009680D1 /* ShellScript */,
+				8D5B49AF048680CD000E48DA /* Resources */,
+				8D5B49B1048680CD000E48DA /* Sources */,
 				2C9A5EB80E8D3ACC009680D1 /* Rez */,
 				8D5B49B3048680CD000E48DA /* Frameworks */,
 			);
@@ -383,11 +385,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
+					ppc64,
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -407,10 +410,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
+					ppc64,
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -433,7 +437,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PRODUCT_VERSION = 1.3;
+				PRODUCT_VERSION = 1.3.1;
 				SDKROOT = macosx10.5;
 			};
 			name = Debug;
@@ -446,7 +450,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				PRODUCT_VERSION = 1.3;
+				PRODUCT_VERSION = 1.3.1;
 				SDKROOT = macosx10.5;
 			};
 			name = Release;
@@ -456,7 +460,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
