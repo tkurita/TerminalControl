@@ -12,8 +12,8 @@
 			<direct-parameter description="TTY name" type="text"/>
 			<result description="custom title of a terminal" type="text"/>
 		</command>
-		<command name="background color for tty" code="TTplgBGc" description="get current custom for a terminal specifeid with TTY">
-			<direct-parameter description="TTY name" type="text"/>
+		<command name="background color of term" code="TTplgBGc" description="get current custom for a terminal">
+			<direct-parameter description="a TTY name or a reference to terminal tab." type="any"/>
 			<result description="List of {Red, Green, Blue, Alpha}">
 				<type type="number" list="yes"/>
 			</result>

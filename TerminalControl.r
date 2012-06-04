@@ -57,14 +57,14 @@ resource 'aete' (0, "TerminalControl Terminology") {
 
 			},
 
-			"background color for tty",
-			"get current custom for a terminal specifeid with TTY",
+			"background color of term",
+			"get current custom for a terminal",
 			'TTpl', 'gBGc',
 			'nmbr',
 			"List of {Red, Green, Blue, Alpha}",
 			replyRequired, listOfItems, notEnumerated, Reserved13,
-			'TEXT',
-			"TTY name",
+			'****',
+			"a TTY name or a reference to terminal tab.",
 			directParamRequired,
 			singleItem, notEnumerated, Reserved13,
 			{

@@ -67,7 +67,7 @@
 			<key>TTplgBGc</key>
 			<dict>
 				<key>Handler</key>
-				<string>BGColorForTTYEventHandler</string>
+				<string>BGColorOfTermEventHandler</string>
 				<key>ThreadSafe</key>
 				<false/>
 				<key>Context</key>

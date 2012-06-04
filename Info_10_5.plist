@@ -32,18 +32,18 @@
 	<dict>
 		<key>Events</key>
 		<dict>
-			<key>TTplapBG</key>
-			<string>ApplyBackgroundColorEventHandler</string>
-			<key>TTplmkTb</key>
-			<string>MakeTabInHandler</string>
 			<key>TTplVers</key>
 			<string>VersionHandler</string>
 			<key>TTplaplT</key>
 			<string>ApplyTitleEventHandler</string>
-			<key>TTplgBGc</key>
-			<string>BGColorForTTYEventHandler</string>
 			<key>TTplgetT</key>
 			<string>TitleForTTYEventHandler</string>
+			<key>TTplapBG</key>
+			<string>ApplyBackgroundColorEventHandler</string>
+			<key>TTplgBGc</key>
+			<string>BGColorOfTermEventHandler</string>
+			<key>TTplmkTb</key>
+			<string>MakeTabInHandler</string>
 		</dict>
 	</dict>
 </dict>

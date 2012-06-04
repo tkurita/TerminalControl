@@ -3,7 +3,7 @@
 #include <Carbon/Carbon.h>
 #include <SystemConfiguration/SystemConfiguration.h>
 
-#define useLog 0
+#define useLog 1
 
 #define kTTYParam 'fTTY'
 #define kAllowingBusyParam 'awBy'
@@ -343,69 +343,120 @@ bail:
 	return resultCode;
 }
 
-OSErr BGColorForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
+id TerminalTabForTTY(NSString* ttyname)
 {
 #if useLog
-	NSLog(@"start BGColorForTTYEventHandler");
-#endif
-	OSErr resultCode = noErr;
-	CFStringRef tty_name = NULL;
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	if (!isTerminalApp()) {
-		resultCode = putMissingValueToReply(reply);
-		goto bail;
-	}
-	
-	OSErr err;
-	tty_name = CFStringCreateWithEvent(ev, keyDirectObject, &err);
-	if (!tty_name) {
-		resultCode = errAEDescNotFound;
-		goto bail;
-	}
-	
-	NSColor *bgcolor;
-	NSArray *windows = [NSApp windows];
-#if useLog
-	NSLog(@"Number of windows : %d", [windows count]);
-#endif
+	NSLog(@"start TerminalTabForTTY : %@", ttyname);
+#endif	
+	NSArray* windows = [NSApp windows];
+	id result = nil;
 	for (id ttwindow in windows) {
 		if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
 			NSArray *tabs = [ttwindow tabControllers];
 			for (id a_tab in tabs) {
-				if ([(NSString *)tty_name isEqualToString:[a_tab scriptTTY]]) {
-					bgcolor = [a_tab scriptBackgroundColor];
-#if useLog
-					NSLog(@"bgcolor : %@", bgcolor);
-					NSLog(@"Calibrated : %@", [bgcolor colorUsingColorSpaceName:NSCalibratedRGBColorSpace]);
-					NSLog(@"Device Color : %@", [bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]);
-#endif					
-					CGFloat cclist[4];
-					[[bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]
-						getRed:&cclist[0] green:&cclist[1] blue:&cclist[2] alpha:&cclist[3]];					
-					AEDescList resultList;
-					resultCode = AECreateList(NULL, 0, FALSE, &resultList);
-					if (resultCode != noErr) {
-						NSLog(@"Fail to AECreateList : %d", resultCode);
-						goto bail;
-					}
-					for (short n=0; n < 4; n++) { 
-						AEDesc ccdesc;
-						long cvalue = cclist[n]*65535;
-						err = AECreateDesc(typeSInt32, &cvalue, sizeof(cvalue), &ccdesc);
-						if (err != noErr) NSLog(@"Fail to AECreateDesc : %d", err);
-						err = AEPutDesc(&resultList, n+1, &ccdesc);
-						if (err != noErr) NSLog(@"Fail to AEPutDesc : %d", err);
-						AEDisposeDesc(&ccdesc);
-					}
-					resultCode = AEPutParamDesc(reply, keyAEResult, &resultList);
-					AEDisposeDesc(&resultList);
+				if ([ttyname isEqualToString:[a_tab scriptTTY]]) {
+					result = a_tab;
 					goto bail;
 				}
 			}
 		}
 	}
 bail:
-	safeRelease(tty_name);
+	return result;
+}
+
+id TerminalTabForEvent(const AppleEvent* ev, AEKeyword theKey, OSErr *errPtr)
+{
+	id result = nil;
+	AppleEvent new_ev;
+	*errPtr = AEDuplicateDesc(ev, &new_ev);
+	if (*errPtr != noErr) {
+		NSLog(@"Failed to AEDuplicateDesc");
+		goto bail;
+	}	
+	NSAppleEventDescriptor* event_in = [[[NSAppleEventDescriptor alloc] 
+										initWithAEDescNoCopy:&new_ev] autorelease];
+	
+	NSAppleEventDescriptor* target_desc = [event_in paramDescriptorForKeyword:theKey];
+	
+	if (!target_desc) {
+#if useLog
+		NSLog(@"No event for expected key."); 
+#endif		
+		goto bail;
+	}
+	
+	if([target_desc descriptorType] == typeObjectSpecifier) {
+		NSScriptObjectSpecifier *tab_specifier = [NSScriptObjectSpecifier 
+									objectSpecifierWithDescriptor:target_desc];
+		result = [tab_specifier objectsByEvaluatingSpecifier];
+		goto bail;
+	}
+	
+	NSString* ttyname = [target_desc stringValue];
+	if (!ttyname) goto bail;
+	result = TerminalTabForTTY(ttyname);
+bail:
+	return result;
+}
+
+
+OSErr BGColorOfTermEventHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
+{
+#if useLog
+	NSLog(@"start BGColorForTTYEventHandler");
+#endif
+	OSErr resultCode = noErr;
+	NSAutoreleasePool *pool = [NSAutoreleasePool new];
+	if (!isTerminalApp()) {
+		resultCode = putMissingValueToReply(reply);
+		goto bail;
+	}
+	
+	OSErr err;	
+	id a_tab = TerminalTabForEvent(ev, keyDirectObject, &err);
+	if (err != noErr) {
+		resultCode = err;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Can't resolve target terminal."), 
+						 kCFStringEncodingUTF8);		
+		goto bail;
+	}
+	if (!a_tab) {
+		resultCode = errAEWrongDataType;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Can't resolve target terminal."), 
+						 kCFStringEncodingUTF8);		
+		goto bail;		
+	}
+	
+	NSColor* bgcolor = [a_tab scriptBackgroundColor];
+#if useLog
+	NSLog(@"bgcolor : %@", bgcolor);
+	NSLog(@"Calibrated : %@", [bgcolor colorUsingColorSpaceName:NSCalibratedRGBColorSpace]);
+	NSLog(@"Device Color : %@", [bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]);
+#endif					
+	CGFloat cclist[4];
+	[[bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]
+			getRed:&cclist[0] green:&cclist[1] blue:&cclist[2] alpha:&cclist[3]];					
+	AEDescList resultList;
+	resultCode = AECreateList(NULL, 0, FALSE, &resultList);
+	if (resultCode != noErr) {
+		NSLog(@"Fail to AECreateList : %d", resultCode);
+		goto bail;
+	}
+	for (short n=0; n < 4; n++) { 
+		AEDesc ccdesc;
+		long cvalue = cclist[n]*65535;
+		err = AECreateDesc(typeSInt32, &cvalue, sizeof(cvalue), &ccdesc);
+		if (err != noErr) NSLog(@"Fail to AECreateDesc : %d", err);
+		err = AEPutDesc(&resultList, n+1, &ccdesc);
+		if (err != noErr) NSLog(@"Fail to AEPutDesc : %d", err);
+		AEDisposeDesc(&ccdesc);
+	}
+	resultCode = AEPutParamDesc(reply, keyAEResult, &resultList);
+	AEDisposeDesc(&resultList);
+bail:
 	[pool release];
 	return resultCode;
 }
