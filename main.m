@@ -489,70 +489,68 @@ OSErr ApplyBackgroundColorEventHandler(const AppleEvent *ev, AppleEvent *reply, 
 	Boolean is_success = 0;
 	OSErr resultCode = noErr;
 	CFMutableArrayRef array = NULL;
-	CFStringRef tty_name = NULL;
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	if (!isTerminalApp()) goto bail;
 	
 	OSErr err;
-	tty_name = CFStringCreateWithEvent(ev, kTTYParam, &err);
+	id terminal_tab = TerminalTabForEvent(ev, kTTYParam, &err);
 	if (err != noErr ) {
 		resultCode = err;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Can't resolve target terminal."), 
+						 kCFStringEncodingUTF8);		
 		goto bail;
+	}
+	
+	if (!terminal_tab) {
+		resultCode = errAEWrongDataType;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Can't resolve target terminal."), 
+						 kCFStringEncodingUTF8);		
+		goto bail;		
 	}
 	
 	err = getFloatArray(ev, keyDirectObject, &array);
 	if (err != noErr) {
-		fprintf(stderr, "Failed to getFloatArray\n");
 		resultCode = err;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Can't obtain a color."), 
+						 kCFStringEncodingUTF8);		
 		goto bail;
+	}
+	
+	if (!array) {
+		resultCode = errAEWrongDataType;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Can't obtain a color."), 
+						 kCFStringEncodingUTF8);		
+		goto bail;		
 	}
 #if useLog
 	NSLog(@"passed color : %@", array);
 #endif	
 	int ccnum = 4;
 	
-	if (tty_name && array) {
-		CFIndex arraylength = CFArrayGetCount(array);
-		if (arraylength < 4) ccnum = arraylength;
-		
-		NSArray *windows = [NSApp windows];
-#if useLog
-		NSLog(@"Number of windows : %d", [windows count]);
-#endif		
-		for (id ttwindow in windows) {
-			if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
-				NSArray *tabs = [ttwindow tabControllers];
-				for (id a_tab in tabs) {
-					if ([(NSString *)tty_name isEqualToString:[a_tab scriptTTY]]) {
-						NSColor *bgcolor = [a_tab scriptBackgroundColor];
-						CGFloat cclist[4];
-						[[bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]
-						  getRed:&cclist[0] green:&cclist[1] blue:&cclist[2] alpha:&cclist[3]];
-						
-						for (short n=0; n < ccnum; n++) {
-							cclist[n] = getColorValue(CFArrayGetValueAtIndex(array, n), true);
-						}
-						bgcolor = [NSColor colorWithCalibratedRed:cclist[0] green:cclist[1] 
-															 blue:cclist[2] alpha:cclist[3]];		
-#if useLog
-						NSLog(@"%@", [bgcolor description]);
-#endif	
-						
-						[a_tab setScriptBackgroundColor:bgcolor];
-						is_success = 1;
-						goto bail;
-					}
-				}
-			}
-		}
-	} else {
-		resultCode = errAEDescNotFound;
+	CFIndex arraylength = CFArrayGetCount(array);
+	if (arraylength < 4) ccnum = arraylength;
+	NSColor *bgcolor = [terminal_tab scriptBackgroundColor];
+	CGFloat cclist[4];
+	[[bgcolor colorUsingColorSpaceName:NSDeviceRGBColorSpace]
+		getRed:&cclist[0] green:&cclist[1] blue:&cclist[2] alpha:&cclist[3]];
+	for (short n=0; n < ccnum; n++) {
+		cclist[n] = getColorValue(CFArrayGetValueAtIndex(array, n), true);
 	}
+	bgcolor = [NSColor colorWithCalibratedRed:cclist[0] green:cclist[1] 
+										 blue:cclist[2] alpha:cclist[3]];		
+#if useLog
+	NSLog(@"%@", [bgcolor description]);
+#endif	
 	
+	[terminal_tab setScriptBackgroundColor:bgcolor];
+	is_success = 1;	
 bail:
 	putBoolToReply(is_success, reply);
 	safeRelease(array);
-	safeRelease(tty_name);
 	[pool release];
 #if useLog
 	printf("end ApplyTitleEventHandler\n");

@@ -64,7 +64,7 @@ resource 'aete' (0, "TerminalControl Terminology") {
 			"List of {Red, Green, Blue, Alpha}",
 			replyRequired, listOfItems, notEnumerated, Reserved13,
 			'****',
-			"a TTY name or a reference to terminal tab.",
+			"A reference to terminal tab or a tty device name.",
 			directParamRequired,
 			singleItem, notEnumerated, Reserved13,
 			{
@@ -80,8 +80,8 @@ resource 'aete' (0, "TerminalControl Terminology") {
 			directParamRequired,
 			listOfItems, notEnumerated, Reserved13,
 			{
-				"for tty", 'fTTY', 'TEXT',
-				"device name",
+				"to", 'fTTY', '****',
+				"A reference to terminal tab or a tty device name.",
 				required,
 				singleItem, notEnumerated, Reserved13
 			},

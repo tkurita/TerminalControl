@@ -13,7 +13,7 @@
 			<result description="custom title of a terminal" type="text"/>
 		</command>
 		<command name="background color of term" code="TTplgBGc" description="get current custom for a terminal">
-			<direct-parameter description="a TTY name or a reference to terminal tab." type="any"/>
+			<direct-parameter description="A reference to terminal tab or a tty device name." type="any"/>
 			<result description="List of {Red, Green, Blue, Alpha}">
 				<type type="number" list="yes"/>
 			</result>
@@ -22,7 +22,7 @@
 			<direct-parameter description="List of {Red, Green, Blue, Alpha}">
 				<type type="number" list="yes"/>
 			</direct-parameter>
-			<parameter name="for tty" code="fTTY" description="device name" type="text"/>
+			<parameter name="to" code="fTTY" description="A reference to terminal tab or a tty device name." type="any"/>
 		</command>
 		<command name="activate terminal for directory" code="TTplacDr" description="activate tarminal tab or window for directory. Work after Mac OS 10.7.">
 			<direct-parameter description="a path to directory " type="file"/>
