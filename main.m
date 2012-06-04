@@ -3,7 +3,7 @@
 #include <Carbon/Carbon.h>
 #include <SystemConfiguration/SystemConfiguration.h>
 
-#define useLog 1
+#define useLog 0
 
 #define kTTYParam 'fTTY'
 #define kAllowingBusyParam 'awBy'
@@ -194,6 +194,28 @@ bail:
 
 }
 
+id TerminalTabForTTY(NSString* ttyname)
+{
+#if useLog
+	NSLog(@"start TerminalTabForTTY : %@", ttyname);
+#endif	
+	NSArray* windows = [NSApp windows];
+	id result = nil;
+	for (id ttwindow in windows) {
+		if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
+			NSArray *tabs = [ttwindow tabControllers];
+			for (id a_tab in tabs) {
+				if ([ttyname isEqualToString:[a_tab scriptTTY]]) {
+					result = a_tab;
+					goto bail;
+				}
+			}
+		}
+	}
+bail:
+	return result;
+}
+
 OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
 {
 #if useLog
@@ -207,46 +229,41 @@ OSErr TitleForTTYEventHandler(const AppleEvent *ev, AppleEvent *reply, long refc
 		goto bail;
 	}
 	
-	OSErr err;
-	
+	OSErr err = noErr;
 	tty_name = CFStringCreateWithEvent(ev, keyDirectObject, &err);
-	if (!tty_name) {
-		resultCode = errAEDescNotFound;
+	if (err != noErr) {
+		resultCode = err;
 		goto bail;
 	}
-	
-	NSArray *windows = [NSApp windows];
-#if useLog
-	NSLog(@"Number of windows : %d", [windows count]);
-#endif
-	NSString *current_title = nil;
-	for (id ttwindow in windows) {
-		if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
-			NSArray *tabs = [ttwindow tabControllers];
-			for (id a_tab in tabs) {
-				if ([(NSString *)tty_name isEqualToString:[a_tab scriptTTY]]) {
-					current_title = [a_tab customTitle];
-#if useLog
-					NSLog(@"tty : %@", [a_tab scriptTTY]);
-#endif	
-					putStringToEvent(reply, keyAEResult, (CFStringRef)current_title, kCFStringEncodingUTF8);
-					goto bail;
-				}
-			}
-		}
+	if (!tty_name) {
+		resultCode = errAEDescNotFound;
+		putStringToEvent(reply, keyErrorString, 
+						 CFSTR("Fail to obtain new title."), 
+						 kCFStringEncodingUTF8);		
+		goto bail;
 	}
-	
-	putMissingValueToReply(reply);
-	
+#if useLog
+	NSLog(@"wanted tty : %@", tty_name);
+#endif	
+	id terminal_tab = TerminalTabForTTY((NSString *)tty_name);
+#if useLog
+	NSLog(@"terminal's tty : %@", [terminal_tab scriptTTY]);
+#endif		
+	if (!terminal_tab) {
+		putMissingValueToReply(reply);
+		goto bail;
+	}
+	NSString *current_title = [terminal_tab customTitle];
+#if useLog
+	NSLog(@"currernt title : %@", current_title);
+#endif
+	putStringToEvent(reply, keyAEResult, (CFStringRef)current_title, kCFStringEncodingUTF8);	
 bail:
 	safeRelease(tty_name);
 	[pool release];
 #if useLog
-	printf("current title\n");
-	CFShow(current_title);
-	printf("end titleForTTYEventHandler\n");
-#endif
-	
+	NSLog(@"end of TitleForTTYEventHandler");
+#endif	
 	return resultCode;	
 }
 
@@ -341,28 +358,6 @@ bail:
 	printf("end ApplyTitleEventHandler\n");
 #endif
 	return resultCode;
-}
-
-id TerminalTabForTTY(NSString* ttyname)
-{
-#if useLog
-	NSLog(@"start TerminalTabForTTY : %@", ttyname);
-#endif	
-	NSArray* windows = [NSApp windows];
-	id result = nil;
-	for (id ttwindow in windows) {
-		if ([ttwindow respondsToSelector:@selector(tabControllers)]) {
-			NSArray *tabs = [ttwindow tabControllers];
-			for (id a_tab in tabs) {
-				if ([ttyname isEqualToString:[a_tab scriptTTY]]) {
-					result = a_tab;
-					goto bail;
-				}
-			}
-		}
-	}
-bail:
-	return result;
 }
 
 id TerminalTabForEvent(const AppleEvent* ev, AEKeyword theKey, OSErr *errPtr)
