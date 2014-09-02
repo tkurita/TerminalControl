@@ -11,6 +11,7 @@
 - (void)setScriptBackgroundColor:(NSColor *)aColor;
 - (NSURL *)workingDirectoryURL; // 10.7
 - (NSURL *)commandWorkingDirectoryURL;// 10.8
+- (NSURL *)effectiveWorkingDirectoryURL;
 @end
 
 

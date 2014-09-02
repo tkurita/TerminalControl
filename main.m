@@ -162,12 +162,16 @@ OSErr ActivateTabForDirectoryHandler(const AppleEvent *ev, AppleEvent *reply, lo
 	for (TTWindow *a_ttwindow in windows) {
 		if ([a_ttwindow respondsToSelector:@selector(tabControllers)]) {
 			NSArray *tabs = [a_ttwindow tabControllers];
-			SEL wd_prop = @selector(workingDirectoryURL);
-			if (![[tabs lastObject] respondsToSelector:wd_prop]) {
-				wd_prop = @selector(commandWorkingDirectoryURL);
-			}
 			for (id a_tab in tabs) {
-				if (isEqualDir(target_path, local_hostname, [a_tab performSelector:wd_prop])) {
+				NSURL *wdurl = nil;
+				if ([a_tab respondsToSelector:@selector(effectiveWorkingDirectoryURL)]
+					&& (wdurl = [a_tab effectiveWorkingDirectoryURL]) ) {
+				}else if ([a_tab respondsToSelector:@selector(commandWorkingDirectoryURL)]
+						  && (wdurl = [a_tab commandWorkingDirectoryURL])) {
+				} else {
+					wdurl = [a_tab workingDirectoryURL];
+				}
+				if (isEqualDir(target_path, local_hostname, wdurl)) {
 					if (![a_tab scriptBusy]) {
 						target_window = a_ttwindow;
 						target_tab = a_tab;
