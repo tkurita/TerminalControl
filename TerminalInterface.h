@@ -9,7 +9,8 @@
 - (void)setCustomTitle:(NSString *)aTitle;
 - (NSColor *)scriptBackgroundColor;
 - (void)setScriptBackgroundColor:(NSColor *)aColor;
-- (NSURL *)workingDirectoryURL;
+- (NSURL *)workingDirectoryURL; // 10.7
+- (NSURL *)commandWorkingDirectoryURL;// 10.8
 @end
 
 

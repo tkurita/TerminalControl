@@ -7,13 +7,13 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>10</string>
 	<key>CFBundleShortVersionString</key>
 	<string>${PRODUCT_VERSION}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>for Mac OS X 10.5, copyright 2008-2012, Tetsuro KURITA</string>
+	<string>for Mac OS X 10.5, copyright 2008-2014, Tetsuro KURITA</string>
 	<key>CFBundleGetInfoString</key>
-	<string>${PRODUCT_VERSION}  for Mac OS X 10.5, copyright 2008-2012, Tetsuro KURITA</string>
+	<string>${PRODUCT_VERSION}  for Mac OS X 10.5, copyright 2008-2014, Tetsuro KURITA</string>
 	<key>CFBundleIdentifier</key>
 	<string>Scriptfactory.osax.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
