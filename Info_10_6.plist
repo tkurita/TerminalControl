@@ -13,7 +13,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>${PRODUCT_VERSION}</string>
 	<key>CFBundleGetInfoString</key>
-	<string>${PRODUCT_VERSION}  copyright 2008-2015, Tetsuro KURITA, for Mac OS X 10.6</string>
+	<string>${PRODUCT_VERSION}  copyright 2008-2015, Tetsuro KURITA, for Mac OS X 10.6 or later</string>
 	<key>CFBundleIdentifier</key>
 	<string>Scriptfactory.osax.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
