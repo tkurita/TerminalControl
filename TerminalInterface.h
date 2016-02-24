@@ -6,6 +6,7 @@
 - (NSString *)scriptTTY;
 - (NSString *)customTitle;
 - (Boolean *)scriptBusy;
+- (NSArray *)scriptProcesses;
 - (void)setCustomTitle:(NSString *)aTitle;
 - (NSColor *)scriptBackgroundColor;
 - (void)setScriptBackgroundColor:(NSColor *)aColor;

@@ -7,6 +7,7 @@
 
 #define kTTYParam 'fTTY'
 #define kAllowingBusyParam 'awBy'
+#define kProcessPatternParam 'prPt'
 #define kInWindowParam 'kfil'
 #define kToTabParam 'tTab'
 #define BUNDLE_ID CFSTR("Scriptfactory.osax.TerminalControl")
@@ -125,6 +126,13 @@ Boolean isEqualDir(NSString *targetPath, NSString *localHostName, NSURL *url)
 	return false;
 }
 
+Boolean matchProcess(NSRegularExpression *regex, TTTabController *a_tab)
+{
+    NSString *pname = [[a_tab scriptProcesses] lastObject];
+    return [regex numberOfMatchesInString:pname
+                                  options:0 range:NSMakeRange(0, [pname length])] > 0;
+}
+
 OSErr ActivateTabForDirectoryHandler(const AppleEvent *ev, AppleEvent *reply, long refcon)
 {
 #if useLog
@@ -132,6 +140,8 @@ OSErr ActivateTabForDirectoryHandler(const AppleEvent *ev, AppleEvent *reply, lo
 #endif	
 	OSErr resultCode = noErr;
 	CFURLRef url = NULL;
+    CFStringRef process_pattern = NULL;
+    NSRegularExpression *process_regex = nil;
 	TTTabController *target_tab = nil;
 	NSAutoreleasePool *pool = [NSAutoreleasePool new];
 	if (!isTerminalApp()) {
@@ -139,10 +149,18 @@ OSErr ActivateTabForDirectoryHandler(const AppleEvent *ev, AppleEvent *reply, lo
 		goto bail;
 	}
 	
-	OSErr err;
+	OSErr err = noErr;
 	Boolean allowing_busy = false;
 	err = getBoolValue(ev, kAllowingBusyParam, &allowing_busy);
-	
+    process_pattern = CFStringCreateWithEvent(ev, kProcessPatternParam, &err);
+#if useLog
+    NSLog(@"process_pattern : %@", (NSString *)process_pattern);
+#endif
+    if (process_pattern) {
+        process_regex = [NSRegularExpression regularExpressionWithPattern:(NSString *)process_pattern
+                                                                  options:0 error:nil];
+    }
+    
 	url = CFURLCreateWithEvent(ev, keyDirectObject, &err);
 # if useLog
 	NSLog(@"%@", (NSURL *)url);
@@ -172,13 +190,12 @@ OSErr ActivateTabForDirectoryHandler(const AppleEvent *ev, AppleEvent *reply, lo
 					wdurl = [a_tab workingDirectoryURL];
 				}
 				if (isEqualDir(target_path, local_hostname, wdurl)) {
-					if (![a_tab scriptBusy]) {
-						target_window = a_ttwindow;
-						target_tab = a_tab;
-						goto bail;
-					} else if (allowing_busy && !target_tab) {
-						target_window = a_ttwindow;
-						target_tab = a_tab;						
+					if ((![a_tab scriptBusy]) || (allowing_busy && !target_tab)) {
+                        if (!process_regex || matchProcess(process_regex ,a_tab)) {
+                            target_window = a_ttwindow;
+                            target_tab = a_tab;
+                            goto bail;
+                        }
 					}
 				}
 			}
@@ -197,6 +214,7 @@ bail:
 	}
 
 	safeRelease(url);
+    safeRelease(process_pattern);
 	[pool release];
 	return resultCode;
 

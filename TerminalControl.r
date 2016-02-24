@@ -100,6 +100,10 @@ resource 'aete' (0, "TerminalControl Terminology") {
 				"allowing busy", 'awBy', 'bool',
 				"If false, busy terminal will be skipped. The default value is false.",
 				optional,
+				singleItem, notEnumerated, Reserved13,
+				"with process", 'prPt', 'TEXT',
+				"Regular epression for required front process name",
+				optional,
 				singleItem, notEnumerated, Reserved13
 			},
 

@@ -6,14 +6,8 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleVersion</key>
-	<string>12</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>copyright 2008-2015, Tetsuro KURITA, for Mac OS X 10.6 or later</string>
-	<key>CFBundleShortVersionString</key>
-	<string>${PRODUCT_VERSION}</string>
 	<key>CFBundleGetInfoString</key>
-	<string>${PRODUCT_VERSION}  copyright 2008-2015, Tetsuro KURITA, for Mac OS X 10.6 or later</string>
+	<string>${PRODUCT_VERSION} ${COPYRIGHT}, for Mac OS X 10.6 or later</string>
 	<key>CFBundleIdentifier</key>
 	<string>Scriptfactory.osax.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -22,80 +16,86 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>osax</string>
+	<key>CFBundleShortVersionString</key>
+	<string>${PRODUCT_VERSION}</string>
 	<key>CFBundleSignature</key>
 	<string>ascr</string>
+	<key>CFBundleVersion</key>
+	<string>13</string>
+	<key>CSResourcesFileMapped</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>${COPYRIGHT}, for Mac OS X 10.6 or later</string>
+	<key>OSAScriptingDefinition</key>
+	<string>${PRODUCT_NAME}.sdef</string>
 	<key>OSAXHandlers</key>
 	<dict>
 		<key>Events</key>
 		<dict>
 			<key>TTplVers</key>
 			<dict>
+				<key>Context</key>
+				<string>Process</string>
 				<key>Handler</key>
 				<string>VersionHandler</string>
 				<key>ThreadSafe</key>
 				<true/>
-				<key>Context</key>
-				<string>Process</string>
-			</dict>
-			<key>TTplaplT</key>
-			<dict>
-				<key>Handler</key>
-				<string>ApplyTitleEventHandler</string>
-				<key>ThreadSafe</key>
-				<false/>
-				<key>Context</key>
-				<string>Process</string>
-			</dict>
-			<key>TTplgetT</key>
-			<dict>
-				<key>Handler</key>
-				<string>TitleForTTYEventHandler</string>
-				<key>ThreadSafe</key>
-				<false/>
-				<key>Context</key>
-				<string>Process</string>
-			</dict>
-			<key>TTplapBG</key>
-			<dict>
-				<key>Handler</key>
-				<string>ApplyBackgroundColorEventHandler</string>
-				<key>ThreadSafe</key>
-				<false/>
-				<key>Context</key>
-				<string>Process</string>
-			</dict>
-			<key>TTplgBGc</key>
-			<dict>
-				<key>Handler</key>
-				<string>BGColorOfTermEventHandler</string>
-				<key>ThreadSafe</key>
-				<false/>
-				<key>Context</key>
-				<string>Process</string>
 			</dict>
 			<key>TTplacDr</key>
 			<dict>
+				<key>Context</key>
+				<string>Process</string>
 				<key>Handler</key>
 				<string>ActivateTabForDirectoryHandler</string>
 				<key>ThreadSafe</key>
 				<false/>
+			</dict>
+			<key>TTplapBG</key>
+			<dict>
 				<key>Context</key>
 				<string>Process</string>
+				<key>Handler</key>
+				<string>ApplyBackgroundColorEventHandler</string>
+				<key>ThreadSafe</key>
+				<false/>
+			</dict>
+			<key>TTplaplT</key>
+			<dict>
+				<key>Context</key>
+				<string>Process</string>
+				<key>Handler</key>
+				<string>ApplyTitleEventHandler</string>
+				<key>ThreadSafe</key>
+				<false/>
+			</dict>
+			<key>TTplgBGc</key>
+			<dict>
+				<key>Context</key>
+				<string>Process</string>
+				<key>Handler</key>
+				<string>BGColorOfTermEventHandler</string>
+				<key>ThreadSafe</key>
+				<false/>
+			</dict>
+			<key>TTplgetT</key>
+			<dict>
+				<key>Context</key>
+				<string>Process</string>
+				<key>Handler</key>
+				<string>TitleForTTYEventHandler</string>
+				<key>ThreadSafe</key>
+				<false/>
 			</dict>
 			<key>TTplmkTb</key>
 			<dict>
+				<key>Context</key>
+				<string>Process</string>
 				<key>Handler</key>
 				<string>MakeTabInHandler</string>
 				<key>ThreadSafe</key>
 				<false/>
-				<key>Context</key>
-				<string>Process</string>
 			</dict>
 		</dict>
 	</dict>
-	<key>OSAScriptingDefinition</key>
-	<string>${PRODUCT_NAME}.sdef</string>
-	<key>CSResourcesFileMapped</key>
-	<true/>
 </dict>
 </plist>
